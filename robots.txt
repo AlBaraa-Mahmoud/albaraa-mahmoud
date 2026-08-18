@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://albaraa-mahmoud.com/sitemap.xml
