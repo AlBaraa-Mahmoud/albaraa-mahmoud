@@ -2,17 +2,20 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<style>html{background:#0c0d10;color-scheme:dark}</style>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AlBaraa Mahmoud — Senior Motion Designer & Video Producer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
-<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0c0d10">
 <meta name="google-site-verification" content="23s8JRS8vwgurHsMVJ-cm5zwba0JCdTBC86bJhaqujw">
 <meta name="description" content="AlBaraa Mahmoud — Senior Motion Designer & Video Producer with 7+ years of experience. Motion graphics, 2D/3D animation, UGC & CTV performance ads, brand films, and video editing services for global brands and agencies.">
 <meta name="keywords" content="motion designer, motion graphics, video producer, motion graphics services, video editing services, after effects, cinema 4D, animation, Cairo, Egypt, remote, UGC ads, CTV, performance marketing, brand films, Lottie animation">
@@ -23,7 +26,7 @@
 <meta property="og:description" content="7+ years crafting motion graphics, 2D/3D animation, and performance-driven video content. 350+ videos. 150+ campaigns.">
 <meta property="og:image" content="https://albaraa-mahmoud.com/portfolio_og_image.png">
 <meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="638">
+<meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="AlBaraa Mahmoud — Senior Motion Designer & Video Producer">
 <meta property="og:url" content="https://albaraa-mahmoud.com">
 <meta property="og:type" content="website">
@@ -137,67 +140,81 @@
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
-    --bg: #080808; --surface: #111111; --border: #1e1e1e;
-    --accent: #e8ff00; --text: #f0f0f0; --muted: #8a8a8a;
-    --font-display: 'Space Grotesk', sans-serif;
-    --font-mono: 'Space Mono', monospace;
+    --bg: #0c0d10; --surface: #16171b; --border: #26272d;
+    --accent: #ff5e1a; --text: #f2f2f3; --muted: #9a9aa2;
+    --font-display: 'Plus Jakarta Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
   }
-  html { scroll-behavior: smooth; }
+  /* No global scroll-behavior:smooth — every deliberate scroll here is already
+     driven by JS with its own animation. Leaving it on made the BROWSER's own
+     automatic jump-to-#hash (e.g. arriving at index.html#about from another
+     page) animate smoothly through every section in between before our script
+     could correct it — a very visible "wrong section, then a jerk to the right
+     one" glitch on every cross-page anchor link. */
+  section { box-sizing: border-box; }
   body { background: var(--bg); color: var(--text); font-family: var(--font-display); line-height: 1.6; overflow-x: hidden; }
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 300; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 4rem; background: rgba(8,8,8,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
-  .nav-logo { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); letter-spacing: 0.08em; text-decoration: none; }
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-  .nav-links a { color: var(--muted); font-size: 0.85rem; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+  /* Lets the nav pill glide across a full page navigation (e.g. blog.html -> this
+     page), not just between sections within one page. Supporting browsers morph
+     any element sharing a view-transition-name between the old and new document;
+     unsupporting browsers just ignore this and keep today's instant snap — no
+     regression either way. We turn off the browser's DEFAULT whole-page crossfade
+     (root) so only the nav pill itself animates; the rest of the page still swaps
+     instantly, like a normal navigation. */
+  @view-transition { navigation: auto; }
+  ::view-transition-group(root), ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+  .nav-outer { position: fixed; top: 1.25rem; left: 0; right: 0; z-index: 300; display: flex; justify-content: center; padding: 0 1.5rem; pointer-events: none; }
+  nav { position: relative; pointer-events: auto; display: inline-flex; align-items: center; justify-content: center; gap: 1rem; width: auto; max-width: 96vw; padding: 0.95rem 1.6rem; background: var(--surface); border-radius: 999px; box-shadow: 0 8px 30px -12px rgba(20,20,25,0.18); border: 1px solid var(--border); }
+  .nav-logo { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); letter-spacing: 0.08em; text-decoration: none; flex: 0 0 auto; }
+  .nav-links { display: flex; align-items: center; gap: 1.1rem; list-style: none; position: relative; }
+  .nav-links a { display: inline-flex; align-items: center; justify-content: center; line-height: 1; color: var(--muted); font-size: 0.74rem; text-decoration: none; letter-spacing: 0.02em; text-transform: uppercase; transition: color 0.2s; white-space: nowrap; position: relative; z-index: 2; padding: 0.7rem 1rem; box-sizing: border-box; }
   .nav-links a:hover { color: var(--text); }
+  .nav-links a.active { color: #fff; }
+  .nav-indicator { position: absolute; top: 0; left: 0; background: var(--accent); border-radius: 999px; z-index: 1; transition: left 0.45s cubic-bezier(.22,.61,.36,1), width 0.45s cubic-bezier(.22,.61,.36,1), top 0.2s ease, height 0.2s ease, opacity 0.25s ease; opacity: 0; pointer-events: none; max-width: 220px; will-change: left, width; view-transition-name: nav-pill; }
   .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; z-index: 200; }
   .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--text); margin: 5px 0; transition: transform 0.25s ease, opacity 0.25s ease; }
   .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .nav-toggle.open span:nth-child(2) { opacity: 0; }
   .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 4rem 5rem; position: relative; border-bottom: 1px solid var(--border); }
-  .hero-tag { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
-  .hero-tag::before { content: ''; display: block; width: 2rem; height: 1px; background: var(--accent); }
-  .hero-name { font-size: clamp(3.5rem, 8vw, 8rem); font-weight: 700; line-height: 0.95; letter-spacing: -0.03em; margin-bottom: 1.5rem; }
+  .hero { min-height: auto; display: flex; align-items: center; justify-content: center; padding: 7rem 4rem 5.5rem; position: relative; border-bottom: 1px solid var(--border); }
+  .hero-inner { display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%; max-width: 760px; }
+  .hero-content { display: flex; flex-direction: column; align-items: center; }
+  .hero-tag { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+  .hero-name { font-size: clamp(3rem, 6.5vw, 6.5rem); font-weight: 700; line-height: 0.95; letter-spacing: -0.03em; margin-bottom: 1rem; }
   .hero-name span { color: var(--accent); }
-  .hero-sub { font-size: 1.1rem; color: var(--muted); max-width: 480px; margin-bottom: 3rem; font-weight: 300; }
-  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
-  .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 2rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; border: 1px solid transparent; transition: all 0.2s; cursor: pointer; font-family: var(--font-display); }
-  .btn-primary { background: var(--accent); color: #000; border-color: var(--accent); }
+  .hero-sub { font-size: 1.1rem; color: var(--muted); max-width: 480px; margin-bottom: 1.75rem; font-weight: 300; }
+  .hero-fan { display: flex; align-items: flex-end; justify-content: center; margin-bottom: 1.5rem; padding: 0 0 0.5rem; }
+  .hero-fan-card { width: 100px; aspect-ratio: 16/10; border-radius: 10px; overflow: hidden; box-shadow: 0 14px 28px -10px rgba(20,20,25,0.28); border: 3px solid var(--surface); background: var(--surface); margin-left: -22px; transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0s; cursor: pointer; }
+  .hero-fan-card:first-child { margin-left: 0; }
+  .hero-fan-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .hero-fan-card:hover { transform: translateY(-10px) scale(1.08) rotate(0deg) !important; box-shadow: 0 22px 36px -12px rgba(20,20,25,0.35); z-index: 10; position: relative; }
+  @media (max-width: 900px) { .hero-fan { display: none; } }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+  .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 2rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; border: 1px solid transparent; border-radius: 999px; transition: all 0.2s; cursor: pointer; font-family: var(--font-display); }
+  .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); position: relative; overflow: hidden; }
   .btn-primary:hover { background: transparent; color: var(--accent); }
-  .btn-outline { background: transparent; color: var(--text); border-color: var(--border); }
+  .btn-primary:active { transform: scale(0.96); }
+  .btn-ripple { position: absolute; border-radius: 50%; background: rgba(255,255,255,0.55); transform: scale(0); animation: btnRipple 0.6s ease-out; pointer-events: none; }
+  @keyframes btnRipple { to { transform: scale(1); opacity: 0; } }
+  .btn-outline { position: relative; overflow: hidden; background: transparent; color: var(--text); border-color: var(--border); z-index: 0; }
+  .btn-outline::before { content: ''; position: absolute; left: 22px; top: 50%; width: 22px; height: 22px; margin-top: -11px; border-radius: 50%; background: var(--accent); transform: scale(0); transition: transform 0.55s cubic-bezier(.22,.68,.36,1); z-index: -1; }
+  .btn-outline:hover::before { transform: scale(22); }
+  .btn-outline:hover { color: #fff; border-color: var(--accent); transition: color 0.3s ease 0.05s, border-color 0.3s ease; }
   .btn-outline:hover { border-color: var(--text); }
-  .hero-stats { position: absolute; right: 4rem; bottom: 5rem; display: flex; flex-direction: column; gap: 2rem; text-align: right; }
-  .stat-item { display: flex; flex-direction: column; }
-  .stat-num { font-size: 2.5rem; font-weight: 700; color: var(--accent); line-height: 1; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+  .hero-stats { display: flex; gap: 3rem; margin-top: 3rem; justify-content: center; }
+  .stat-item { display: flex; flex-direction: column; align-items: center; }
+  .stat-num { font-size: 2.2rem; font-weight: 700; color: var(--accent); line-height: 1; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
   .stat-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.25rem; }
-  .hero-visual { position: absolute; bottom: 8rem; right: 11rem; width: 460px; pointer-events: none; --hv-scale: clamp(0.6, calc(100vw / 1700px), 1.15); transform: scale(var(--hv-scale)); transform-origin: 100% 100%; }
-  .hero-visual-glow { position: absolute; left: 50%; top: 50%; width: 780px; height: 780px; background: radial-gradient(circle, rgba(232,255,0,0.22) 0%, rgba(232,255,0,0.10) 30%, rgba(232,255,0,0.03) 55%, transparent 75%); transform: translate(-50%,-50%); }
-  .js-loaded .hero-visual-glow { animation: heroGlowPulse 4s ease-in-out infinite; }
-  .hero-visual-dot { position: absolute; top: -35px; left: 73px; width: 11px; height: 11px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 14px 4px rgba(232,255,0,0.5); }
-  .js-loaded .hero-visual-dot { animation: heroDotFloat 3s ease-in-out infinite; }
-  .hero-visual-line { position: relative; font-family: var(--font-mono); font-size: 1.75rem; color: #8a8a8a; letter-spacing: 0.02em; line-height: 1.6; max-width: 430px; }
-  .hero-visual-line .accent-word { color: var(--accent); display: inline-flex; align-items: center; gap: 0.6rem; }
-  .hero-visual-spark-icon { transform-origin: center; }
-  .js-loaded .hero-visual-spark-icon { animation: heroSparkSpin 3s linear infinite; }
-  .hero-visual-path-wrap { position: relative; width: 430px; height: 195px; margin-top: 2rem; }
-  .hero-visual-trail { position: absolute; top: 0; left: 0; }
-  .hero-visual-cursor { position: absolute; top: 30px; left: 13px; color: var(--accent); filter: drop-shadow(0 0 6px rgba(232,255,0,0.55)); }
-  .js-loaded .hero-visual-cursor { animation: heroCursorMove 4s ease-in-out infinite; }
-  @keyframes heroGlowPulse { 0%, 100% { opacity: 0.5; transform: translate(-50%,-50%) scale(0.9); } 50% { opacity: 1; transform: translate(-50%,-50%) scale(1.05); } }
-  @keyframes heroDotFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
-  @keyframes heroSparkSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-  @keyframes heroCursorMove {
-    0% { transform: translate(0,0) rotate(-6deg); opacity: 0; }
-    8% { opacity: 1; }
-    25% { transform: translate(98.7px, 10.5px) rotate(2deg); }
-    50% { transform: translate(190.6px, 44.6px) rotate(10deg); }
-    75% { transform: translate(280.1px, 85.3px) rotate(16deg); }
-    92% { opacity: 1; }
-    100% { transform: translate(371.5px, 116.6px) rotate(20deg); opacity: 0; }
-  }
-  @media (max-width: 900px) { .hero-visual { display: none; } }
-  @media (prefers-reduced-motion: reduce) { .hero-visual-glow, .hero-visual-dot, .hero-visual-spark-icon, .hero-visual-cursor { animation: none; } }
-  .marquee-wrap { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1rem 0; background: var(--surface); }
+  .hero-photo-wrap { position: absolute; bottom: 13rem; left: 3rem; width: 110px; z-index: 20; }
+  @media (max-width: 900px) { .hero-photo-wrap { width: 82px; bottom: 8rem; left: 1.5rem; } }
+  .hero-photo { width: 100%; aspect-ratio: 1/0.97; object-fit: cover; border-radius: 24px; box-shadow: 0 30px 60px -20px rgba(20,20,25,0.25); transition: transform 0.4s cubic-bezier(.2,.8,.2,1), box-shadow 0.4s ease; cursor: pointer; }
+  .hero-photo-wrap:hover .hero-photo { transform: scale(1.04) rotate(-1deg); box-shadow: 0 40px 70px -18px rgba(20,20,25,0.32); }
+  .hero-note { position: absolute; top: -3rem; right: -3.5rem; display: flex; align-items: flex-end; gap: 0.15rem; }
+  .js-loaded .hero-note { animation: heroNoteBob 3.4s ease-in-out infinite; }
+  @keyframes heroNoteBob { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-6px) rotate(1deg); } }
+  .hero-note-bubble { background: var(--text); color: var(--bg); font-family: var(--font-mono); font-size: 0.7rem; padding: 0.5rem 0.85rem; border-radius: 12px 12px 2px 12px; white-space: nowrap; transform: rotate(-3deg); box-shadow: 0 8px 20px -6px rgba(20,20,25,0.35); order: 2; }
+  .hero-note-arrow { width: 32px; height: 32px; color: var(--text); opacity: 0.85; order: 1; margin-bottom: -0.5rem; }
+  @media (prefers-reduced-motion: reduce) { .hero-note { animation: none; } }
+  .marquee-wrap { width: 100%; overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1rem 0; background: var(--surface); margin-top: 2.5rem; }
   .marquee-track { display: flex; gap: 3rem; width: max-content; animation: scroll 30s linear infinite; }
   .marquee-item { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; white-space: nowrap; display: flex; align-items: center; gap: 1rem; }
   .marquee-item::after { content: '✦'; color: var(--accent); font-size: 0.6rem; }
@@ -219,6 +236,17 @@
   .client-word { font-family: var(--font-display); font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); text-align: center; transition: color .25s; }
   .client-card:hover .client-word { color: var(--accent); }
   @keyframes clientFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(.2,.7,.2,1), transform 0.7s cubic-bezier(.2,.7,.2,1); }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+  .reveal-stagger.is-visible > * { animation: revealStagger 0.6s cubic-bezier(.2,.7,.2,1) both; }
+  .reveal-stagger.is-visible > *:nth-child(1) { animation-delay: 0s; }
+  .reveal-stagger.is-visible > *:nth-child(2) { animation-delay: .08s; }
+  .reveal-stagger.is-visible > *:nth-child(3) { animation-delay: .16s; }
+  .reveal-stagger.is-visible > *:nth-child(4) { animation-delay: .24s; }
+  .reveal-stagger.is-visible > *:nth-child(5) { animation-delay: .32s; }
+  .reveal-stagger.is-visible > *:nth-child(6) { animation-delay: .4s; }
+  @keyframes revealStagger { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) { .reveal, .reveal-stagger > * { opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important; } }
   .clients-grid .client-card:nth-child(1) { animation-delay: .02s; }
   .clients-grid .client-card:nth-child(2) { animation-delay: .05s; }
   .clients-grid .client-card:nth-child(3) { animation-delay: .08s; }
@@ -228,42 +256,68 @@
   .clients-grid .client-card:nth-child(7) { animation-delay: .2s; }
   .clients-grid .client-card:nth-child(8) { animation-delay: .23s; }
   .clients-grid .client-card:nth-child(n+9) { animation-delay: .26s; }
-  .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-  .work-card { border: 1px solid var(--border); overflow: hidden; transition: border-color 0.3s; }
-  .work-card:hover { border-color: var(--accent); }
+  .work-carousel-wrap { position: relative; display: flex; align-items: center; justify-content: center; padding: 0.5rem 0; }
+  .work-carousel { position: relative; width: 100%; max-width: 1500px; height: 320px; overflow: visible; -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%); mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%); }
+  .work-card { border: 3px solid var(--surface); border-radius: 14px; overflow: hidden; position: absolute; top: 50%; left: 50%; width: 440px; height: 288px; margin: -144px 0 0 -220px; cursor: pointer; transition: transform 0.7s cubic-bezier(.16,.84,.24,1), opacity 0.6s ease, border-color 0.4s ease, z-index 0s; }
+  .work-card.is-center { border-color: var(--accent); border-width: 4px; transition: transform 0.4s cubic-bezier(.34,1.4,.64,1), opacity 0.6s ease, border-color 0.4s ease; }
+  .work-card.is-center:hover { transform: translate(0px,0px) scale(1.07) rotate(0deg) !important; }
+  .work-card .video-wrap { position: absolute; inset: 0; padding-bottom: 0; height: 100%; }
+  .work-card .work-info { display: none; }
+  .work-caption { text-align: center; margin-top: 3rem; min-height: 3.5rem; }
+  .work-caption-cat { font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.35rem; transition: opacity 0.25s ease; }
+  .work-caption-title { font-size: 1.15rem; font-weight: 600; transition: opacity 0.25s ease; }
+  .work-card .work-cat { display: none; }
+  .work-card .work-title { font-size: 1rem; font-weight: 600; color: #fff; margin-bottom: 0; }
+  .work-card .work-desc { display: none; }
+  .work-card.is-center { cursor: default; }
+  .work-card-hitbox { position: absolute; inset: 0; z-index: 20; cursor: pointer; background: transparent; }
+  .work-card.is-center .work-card-hitbox { pointer-events: none; }
+  .work-nav { flex: 0 0 auto; width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); color: var(--text); font-size: 1.4rem; cursor: pointer; z-index: 20; transition: background 0.2s ease, transform 0.2s ease; }
+  .work-nav:hover { background: var(--accent); color: #fff; transform: scale(1.08); }
+  @media (max-width: 768px) { .work-nav { display: none; } .work-carousel { height: 220px; } .work-card { width: 220px; height: 145px; margin: -72px 0 0 -110px; } }
   .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; cursor: pointer; }
   .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
   .video-wrap img.video-thumb { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
-  .video-wrap .video-play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 64px; height: 64px; border-radius: 50%; background: rgba(232,255,0,0.92); display: flex; align-items: center; justify-content: center; transition: transform 0.2s ease, background 0.2s ease; }
+  .video-wrap .video-play-btn { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 64px; height: 64px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; transition: transform 0.2s ease, background 0.2s ease; }
+  .work-card .video-play-btn { width: 52px; height: 52px; }
+  .work-card .video-play-btn svg { width: 20px; height: 20px; }
   .video-wrap:hover .video-play-btn { transform: translate(-50%,-50%) scale(1.08); background: var(--accent); }
   .video-wrap .video-play-btn svg { margin-left: 3px; }
   .work-info { padding: 1.25rem 1.5rem; }
   .work-cat { font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.4rem; }
   .work-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.25rem; }
   .work-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
-  .work-card-lg { grid-column: span 2; }
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
   .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 2rem; }
   .service-item { background: var(--bg, #080808); padding: 2.25rem 2rem; transition: background 0.2s ease; cursor: pointer; border: none; text-align: left; width: 100%; font-family: inherit; display: block; color: var(--text); }
-  .service-item:hover { background: rgba(232,255,0,0.04); }
-  .service-item:hover .service-title { color: var(--accent, #e8ff00); }
-  .service-num { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--accent, #e8ff00); margin-bottom: 1rem; display:block; }
+  .service-item:hover { background: rgba(52,82,255,0.05); }
+  .service-item:hover .service-title { color: var(--accent); }
+  .service-num { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); margin-bottom: 1rem; display:block; }
   .service-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.6rem; color: var(--muted); transition: color 0.2s ease; }
   .service-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
   .about-text { font-size: 1.05rem; color: #aaa; line-height: 1.8; }
   .about-text strong { color: var(--text); }
-  .about-skills { display: flex; flex-direction: column; gap: 1.5rem; }
-  .skill-row { display: flex; flex-direction: column; gap: 0.5rem; }
-  .skill-name { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-family: var(--font-mono); display: flex; justify-content: space-between; }
-  .skill-bar { height: 2px; background: var(--border); border-radius: 2px; }
-  .skill-fill { height: 100%; background: var(--accent); border-radius: 2px; }
-  .exp-list { display: flex; flex-direction: column; }
-  .exp-item { display: grid; grid-template-columns: 200px 1fr; gap: 3rem; padding: 2.5rem 0; border-bottom: 1px solid var(--border); }
+  .about-stats-tag { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 0.45rem 1.1rem; font-size: 0.8rem; color: var(--muted); }
+  .about-stats-tag svg { color: var(--accent); flex-shrink: 0; }
+  .about-skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .about-skill-card.big { grid-column: span 2; }
+  .about-skill-card.small { grid-column: span 1; display: flex; flex-direction: column; justify-content: center; }
+  .about-skill-card.small .about-stat-num { margin: 0.4rem 0 0; font-size: 1.9rem; }
+  .about-skill-card.small .about-stat-label { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  @media (max-width: 640px) { .about-skill-card.big, .about-skill-card.small { grid-column: span 4; } }
+  .about-skill-card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .about-skill-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px -14px rgba(20,20,25,0.18); }
+  .about-stat-icon { width: 38px; height: 38px; border-radius: 10px; background: rgba(52,82,255,0.1); display: flex; align-items: center; justify-content: center; color: var(--accent); margin-bottom: 2.25rem; }
+  .about-stat-label { font-size: 0.92rem; color: var(--text); font-weight: 500; }
+  .about-stat-num { font-size: 2.75rem; font-weight: 700; margin: 1.25rem 0 0.5rem; line-height: 1; font-family: var(--font-mono); }
+  .about-stat-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.4; }
+  .exp-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 3rem; }
+  .exp-item { display: block; padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
   .exp-item:last-child { border-bottom: none; }
-  .exp-date { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); padding-top: 0.25rem; }
-  .exp-company { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.4rem; font-family: var(--font-mono); }
-  .exp-role { font-size: 1.15rem; font-weight: 600; margin-bottom: 0.75rem; }
-  .exp-desc { font-size: 0.9rem; color: #888; line-height: 1.7; }
+  .exp-date { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+  .exp-company { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.3rem; font-family: var(--font-mono); }
+  .exp-role { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .exp-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.5; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
   .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
   .contact-links { display: flex; flex-direction: column; gap: 1rem; }
   .contact-link { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 1.5rem; border: 1px solid var(--border); text-decoration: none; color: var(--text); font-size: 0.9rem; font-weight: 500; transition: all 0.2s; }
@@ -273,7 +327,8 @@
   footer { padding: 2rem 4rem; display: flex; align-items: center; justify-content: space-between; }
   .footer-copy { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); }
   @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
+    .nav-outer { top: 0.75rem; padding: 0 1rem; }
+    nav { padding: 0.5rem 0.5rem 0.5rem 1.1rem; }
     .nav-toggle { display: block; }
     .nav-links {
       display: flex;
@@ -296,6 +351,9 @@
     .nav-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 140; }
     .nav-overlay.open { display: block; }
     .hero { padding: 6rem 1.5rem 4rem; min-height: auto; }
+    .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 2.5rem; }
+    .hero-content { align-items: center; }
+    .hero-stats { justify-content: center; flex-wrap: wrap; text-align: left; }
     .hero-name { font-size: clamp(2.8rem, 12vw, 5rem); }
     .hero-ctas { flex-direction: column; }
     .hero-ctas .btn { width: 100%; justify-content: center; text-align: center; box-sizing: border-box; }
@@ -311,65 +369,108 @@
     .client-card { min-height: 90px; padding: 1rem; }
     .client-icon svg { width: 32px; height: 32px; }
     .client-word { font-size: 0.75rem; }
-    .work-grid { grid-template-columns: 1fr; }
     .services-grid { grid-template-columns: 1fr; }
-    .work-card-lg { grid-column: span 1; }
     .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
     footer { padding: 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
     .contact-link { font-size: 0.78rem; padding: 1rem; }
     input, textarea, select { width: 100%; box-sizing: border-box; }
     form > div { grid-template-columns: 1fr !important; }
+    #clients, #about, #services, #experience, #contact { min-height: auto; }
   }
 </style>
 </head>
 <body>
+<script>
+if('scrollRestoration' in history){ history.scrollRestoration = 'manual'; }
+window.scrollTo(0, 0);
+</script>
 
+<div class="nav-outer">
 <nav>
-  <a href="#" class="nav-logo">AM ✦</a>
+  <a href="index.html" class="nav-logo">AM ✦</a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#work">Work</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="services.html">Services</a></li>
-    <li><a href="case-studies.html">Case Studies</a></li>
-    <li><a href="blog.html">Blog</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="index.html#work" data-nav-key="work">Work</a></li>
+    <li><a href="index.html#about" data-nav-key="about">About</a></li>
+    <li><a href="services.html" data-nav-key="services">Services</a></li>
+    <li><a href="case-studies.html" data-nav-key="case-studies">Case Studies</a></li>
+    <li><a href="blog.html" data-nav-key="blog">Blog</a></li>
+    <li><a href="index.html#experience" data-nav-key="experience">Experience</a></li>
+    <li><a href="index.html#contact" data-nav-key="contact">Contact</a></li>
   </ul>
+  <span class="nav-indicator" id="navIndicator"></span>
   <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
+</div>
 <div class="nav-overlay" id="navOverlay"></div>
 
+<div id="page-content">
 <main>
-<section class="hero">
-  <div class="hero-tag">Senior Motion Designer & Video Producer</div>
-  <h1 class="hero-name">AlBaraa<br><span>Mahmoud</span></h1>
-  <p class="hero-sub">7+ years crafting motion graphics, animation, and performance-driven video content for global brands and digital campaigns.</p>
-  <div class="hero-ctas">
-    <a href="https://vimeo.com/albaraamahmoud" target="_blank" class="btn btn-primary">View Vimeo <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-left:6px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-    <a href="#contact" class="btn btn-outline">Get in Touch <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-left:6px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+<section class="hero" data-page-index="0">
+  <div class="hero-inner">
+    <div class="hero-photo-wrap" aria-hidden="false">
+      <img src="images/profile.jpg" alt="AlBaraa Mahmoud" class="hero-photo" fetchpriority="high">
+      <div class="hero-note">
+        <svg class="hero-note-arrow" viewBox="0 0 60 60" fill="none"><path d="M52 8C40 20 32 34 26 48" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 6"/><path d="M38 44L26 48L29 36" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        <span class="hero-note-bubble">Hi, this is me!</span>
+      </div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-tag">Senior Motion Designer & Video Producer</div>
+      <h1 class="hero-name">AlBaraa<br><span>Mahmoud</span></h1>
+      <p class="hero-sub">7+ years crafting motion graphics, animation, and performance-driven video content for global brands and digital campaigns.</p>
+      <div class="hero-fan" aria-hidden="true">
+        <div class="hero-fan-card" style="transform: translateY(17px) rotate(-10deg); z-index:6;"><img src="images/work/work-1.jpg" alt="" loading="lazy"></div>
+        <div class="hero-fan-card" style="transform: translateY(6px) rotate(-6deg); z-index:5; margin-left:-27px;"><img src="images/work/work-2.jpg" alt="" loading="lazy"></div>
+        <div class="hero-fan-card" style="transform: translateY(1px) rotate(-2deg); z-index:4; margin-left:-22px;"><img src="images/work/work-3.jpg" alt="" loading="lazy"></div>
+        <div class="hero-fan-card" style="transform: translateY(1px) rotate(2deg); z-index:3; margin-left:-22px;"><img src="images/work/work-4.jpg" alt="" loading="lazy"></div>
+        <div class="hero-fan-card" style="transform: translateY(6px) rotate(6deg); z-index:2; margin-left:-27px;"><img src="images/work/work-5.jpg" alt="" loading="lazy"></div>
+        <div class="hero-fan-card" style="transform: translateY(17px) rotate(10deg); z-index:1; margin-left:-32px;"><img src="images/work/work-6.jpg" alt="" loading="lazy"></div>
+      </div>
+      <div class="hero-ctas">
+        <a href="https://vimeo.com/albaraamahmoud" target="_blank" class="btn btn-primary">View Vimeo <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-left:6px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        <a href="#contact" class="btn btn-outline">Get in Touch <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-left:6px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item"><div class="stat-num" data-target="350" data-suffix="+">0+</div><div class="stat-label">Videos Produced</div></div>
+        <div class="stat-item"><div class="stat-num" data-target="150" data-suffix="+">0+</div><div class="stat-label">Campaigns</div></div>
+        <div class="stat-item"><div class="stat-num" data-target="7" data-suffix="+">0+</div><div class="stat-label">Years Experience</div></div>
+      </div>
+      <div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">After Effects</span>
+    <span class="marquee-item">Cinema 4D</span>
+    <span class="marquee-item">Premiere Pro</span>
+    <span class="marquee-item">Figma</span>
+    <span class="marquee-item">Lottie</span>
+    <span class="marquee-item">Adobe Firefly</span>
+    <span class="marquee-item">Runway AI</span>
+    <span class="marquee-item">Motion Graphics</span>
+    <span class="marquee-item">2D/3D Animation</span>
+    <span class="marquee-item">CTV Creatives</span>
+    <span class="marquee-item">UGC Ads</span>
+    <span class="marquee-item">Performance Marketing</span>
+    <span class="marquee-item">After Effects</span>
+    <span class="marquee-item">Cinema 4D</span>
+    <span class="marquee-item">Premiere Pro</span>
+    <span class="marquee-item">Figma</span>
+    <span class="marquee-item">Lottie</span>
+    <span class="marquee-item">Adobe Firefly</span>
+    <span class="marquee-item">Runway AI</span>
+    <span class="marquee-item">Motion Graphics</span>
+    <span class="marquee-item">2D/3D Animation</span>
+    <span class="marquee-item">CTV Creatives</span>
+    <span class="marquee-item">UGC Ads</span>
+    <span class="marquee-item">Performance Marketing</span>
   </div>
-  <div class="hero-stats">
-    <div class="stat-item"><div class="stat-num" data-target="350" data-suffix="+">0+</div><div class="stat-label">Videos Produced</div></div>
-    <div class="stat-item"><div class="stat-num" data-target="150" data-suffix="+">0+</div><div class="stat-label">Campaigns</div></div>
-    <div class="stat-item"><div class="stat-num" data-target="7" data-suffix="+">0+</div><div class="stat-label">Years Experience</div></div>
-  </div>
-  <div class="hero-visual" aria-hidden="true">
-    <div class="hero-visual-glow"></div>
-    <div class="hero-visual-dot"></div>
-    <div class="hero-visual-line">Everything starts with a<br><span class="accent-word"><svg class="hero-visual-spark-icon" width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z"/></svg> Spark</span></div>
-    <div class="hero-visual-path-wrap">
-      <svg class="hero-visual-trail" width="430" height="195" viewBox="0 0 430 195">
-        <path d="M12.96,30.24 C151.2,21.6 259.2,118.8 384.48,146.88" fill="none" stroke="#e8ff00" stroke-width="1.9" stroke-dasharray="7 13" opacity="0.35"/>
-      </svg>
-      <svg class="hero-visual-cursor" width="44" height="44" viewBox="0 0 24 24" fill="currentColor"><path d="M4 2l16 7-6.5 2.5L11 18z"/></svg>
+</div>
     </div>
   </div>
 </section>
 
-<section id="clients">
-  <h2 class="section-label" style="font-weight:400;">Selected Clients</h2>
+<section id="clients" data-page-index="1" style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center;">
+  <h2 class="section-label reveal" style="font-weight:400;">Selected Clients</h2>
   <div class="clients-grid">
     <div class="client-card" title="Nissan"><span class="client-icon"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.576 14.955l-.01.028c-1.247 3.643-4.685 6.086-8.561 6.086-3.876 0-7.32-2.448-8.562-6.09l-.01-.029H.71v.329l1.133.133c.7.08.847.39 1.038.78l.048.096c1.638 3.495 5.204 5.752 9.08 5.752 3.877 0 7.443-2.257 9.081-5.747l.048-.095c.19-.39.338-.7 1.038-.781l1.134-.134v-.328zM3.443 9.012c1.247-3.643 4.686-6.09 8.562-6.09 3.876 0 7.319 2.447 8.562 6.09l.01.028h2.728v-.328l-1.134-.133c-.7-.081-.847-.39-1.038-.781l-.047-.096C19.448 4.217 15.88 1.96 12.005 1.96c-3.881 0-7.443 2.257-9.081 5.752l-.048.095c-.19.39-.338.7-1.038.781l-1.133.133v.329h2.724zm13.862 1.586l-1.743 2.795h.752l.31-.5h2.033l.31.5h.747l-1.743-2.795zm1.033 1.766h-1.395l.7-1.124zm2.81-1.066l2.071 2.095H24v-2.795h-.614v2.085l-2.062-2.085h-.795v2.795h.619zM0 13.393h.619v-2.095l2.076 2.095h.781v-2.795h-.619v2.085L.795 10.598H0zm4.843-2.795h.619v2.795h-.62zm4.486 2.204c-.02.005-.096.005-.124.005H6.743v.572h2.5c.019 0 .167 0 .195-.005.51-.048.743-.472.743-.843 0-.381-.243-.79-.705-.833-.09-.01-.166-.01-.2-.01H7.643a.83.83 0 0 1-.181-.014c-.129-.034-.176-.148-.176-.243 0-.086.047-.2.18-.238a.68.68 0 0 1 .172-.014h2.357v-.562H7.6c-.1 0-.176.004-.238.014a.792.792 0 0 0-.695.805c0 .343.214.743.685.81.086.009.205.009.258.009H9.2c.029 0 .1 0 .114.005.181.023.243.157.243.276a.262.262 0 0 1-.228.266zm4.657 0c-.02.005-.096.005-.129.005H11.4v.572h2.5c.019 0 .167 0 .195-.005.51-.048.743-.472.743-.843 0-.381-.243-.79-.705-.833-.09-.01-.166-.01-.2-.01H12.3a.83.83 0 0 1-.181-.014c-.129-.034-.176-.148-.176-.243 0-.086.047-.2.18-.238a.68.68 0 0 1 .172-.014h2.357v-.562h-2.395c-.1 0-.176.004-.238.014a.792.792 0 0 0-.695.805c0 .343.214.743.686.81.085.009.204.009.257.009h1.59c.029 0 .1 0 .114.005.181.023.243.157.243.276a.267.267 0 0 1-.228.266Z"/></svg></span></div>
     <div class="client-card" title="LG"><span class="client-icon"><svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M14.522 14.078h3.27v1.33h-4.847v-6.83h1.577v5.5zm6.74-1.274h1.284v1.195c-.236.09-.698.18-1.137.18-1.42 0-1.893-.721-1.893-2.186 0-1.398.45-2.221 1.869-2.221.791 0 1.24.248 1.612.722l.982-.903c-.6-.855-1.646-1.114-2.629-1.114-2.208 0-3.368 1.205-3.368 3.504 0 2.288 1.047 3.528 3.358 3.528 1.06 0 2.096-.27 2.66-.665V11.53h-2.739v1.274zM5.291 6.709a5.29 5.29 0 1 1 0 10.582 5.291 5.291 0 1 1 0-10.582m3.16 8.457a4.445 4.445 0 0 0 1.31-3.161v-.242l-.22.001H6.596v.494h2.662l-.001.015a3.985 3.985 0 0 1-3.965 3.708 3.95 3.95 0 0 1-2.811-1.165 3.952 3.952 0 0 1-1.164-2.811c0-1.061.414-2.059 1.164-2.81a3.951 3.951 0 0 1 2.81-1.164l.252.003v-.495l-.251-.003a4.475 4.475 0 0 0-4.47 4.469c0 1.194.465 2.316 1.309 3.161a4.444 4.444 0 0 0 3.16 1.31 4.444 4.444 0 0 0 3.162-1.31m-2.91-1.297V9.644H5.04v4.72h1.556v-.495H5.543zm-1.265-3.552a.676.676 0 1 0-.675.674.676.676 0 0 0 .675-.674"/></svg></span></div>
@@ -410,171 +511,160 @@
   </div>
 </section>
 
-<div class="marquee-wrap">
-  <div class="marquee-track">
-    <span class="marquee-item">After Effects</span>
-    <span class="marquee-item">Cinema 4D</span>
-    <span class="marquee-item">Premiere Pro</span>
-    <span class="marquee-item">Figma</span>
-    <span class="marquee-item">Lottie</span>
-    <span class="marquee-item">Adobe Firefly</span>
-    <span class="marquee-item">Runway AI</span>
-    <span class="marquee-item">Motion Graphics</span>
-    <span class="marquee-item">2D/3D Animation</span>
-    <span class="marquee-item">CTV Creatives</span>
-    <span class="marquee-item">UGC Ads</span>
-    <span class="marquee-item">Performance Marketing</span>
-    <span class="marquee-item">After Effects</span>
-    <span class="marquee-item">Cinema 4D</span>
-    <span class="marquee-item">Premiere Pro</span>
-    <span class="marquee-item">Figma</span>
-    <span class="marquee-item">Lottie</span>
-    <span class="marquee-item">Adobe Firefly</span>
-    <span class="marquee-item">Runway AI</span>
-    <span class="marquee-item">Motion Graphics</span>
-    <span class="marquee-item">2D/3D Animation</span>
-    <span class="marquee-item">CTV Creatives</span>
-    <span class="marquee-item">UGC Ads</span>
-    <span class="marquee-item">Performance Marketing</span>
-  </div>
-</div>
+<section id="work" data-page-index="2" style="padding-top: 2rem; padding-bottom: 9rem; overflow-x: hidden; border-bottom: none;">
+  <h2 class="section-label reveal" style="font-weight:400;">Selected Work</h2>
+  <p style="margin-bottom: 0.5rem;"><a href="case-studies.html" style="color: var(--muted); font-size: 0.85rem; text-decoration: underline;">View full case studies →</a></p>
+  <div class="work-carousel-wrap">
+    <div class="work-carousel" id="workCarousel">
 
-<section id="work">
-  <h2 class="section-label" style="font-weight:400;">Selected Work</h2>
-  <p style="margin-bottom: 2rem;"><a href="case-studies.html" style="color: var(--muted); font-size: 0.85rem; text-decoration: underline;">View full case studies →</a></p>
-  <div class="work-grid">
+      <div class="work-card" data-index="0">
+        <div class="video-wrap">
+          <img class="video-thumb" src="https://i.vimeocdn.com/video/1966252017-5ee53da20a3b87e51d384d7400a1552b4583cdbd9d611ccd75e583978e5dd062-d_960x540" alt="ElAhly Tamkeen Ramadan TV ad video thumbnail" loading="lazy" width="960" height="540">
+          <div class="video-play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+          <template class="video-embed-src">https://player.vimeo.com/video/927597471?h=283e0468f8&color=ff5e1a&title=0&byline=0&portrait=0</template>
+        </div>
+        <div class="work-info">
+          <div class="work-cat">TV Commercial · Motion Graphics</div>
+          <div class="work-title">ElAhly Tamkeen — Ramadan TV Ad</div>
+          <div class="work-desc">Full motion graphics production for a major Egyptian banking Ramadan campaign.</div>
+        </div>
+        <div class="work-card-hitbox"></div>
+      </div>
 
-    <div class="work-card work-card-lg">
-      <div class="video-wrap">
-        <img class="video-thumb" src="https://i.vimeocdn.com/video/1966252017-5ee53da20a3b87e51d384d7400a1552b4583cdbd9d611ccd75e583978e5dd062-d_960x540" alt="Video thumbnail" loading="lazy" width="960" height="540">
-        <div class="video-play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-        <template class="video-embed-src">https://player.vimeo.com/video/927597471?h=283e0468f8&color=e8ff00&title=0&byline=0&portrait=0</template>
+      <div class="work-card" data-index="1">
+        <div class="video-wrap">
+          <img class="video-thumb" src="https://i.vimeocdn.com/video/2061334245-d5530daeff3959b113258398b6f93721ab6bfda403e698c3371738f894ea412b-d_960x540" alt="Al-Futtaim brand film video thumbnail" loading="lazy" width="960" height="540">
+          <div class="video-play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+          <template class="video-embed-src">https://player.vimeo.com/video/1120537253?h=7432a0fb6c&color=ff5e1a&title=0&byline=0&portrait=0</template>
+        </div>
+        <div class="work-info">
+          <div class="work-cat">Brand · Corporate</div>
+          <div class="work-title">Al-Futtaim — Building a Future-Ready World</div>
+          <div class="work-desc">Seamless visual journey through Al-Futtaim's legacy using motion, typography, and abstract visual elements.</div>
+        </div>
+        <div class="work-card-hitbox"></div>
       </div>
-      <div class="work-info">
-        <div class="work-cat">TV Commercial · Motion Graphics</div>
-        <div class="work-title">ElAhly Tamkeen — Ramadan TV Ad</div>
-        <div class="work-desc">Full motion graphics production for a major Egyptian banking Ramadan campaign.</div>
+
+      <div class="work-card" data-index="2">
+        <div class="video-wrap">
+          <img class="video-thumb" src="https://i.vimeocdn.com/video/1991930470-4c731ac1dcfcb8b5fd381463f55180e59df82e02a96aa8973f87bf80179318bb-d_960x540" alt="Sealy mattress product campaign video thumbnail" loading="lazy" width="960" height="540">
+          <div class="video-play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+          <template class="video-embed-src">https://player.vimeo.com/video/1064584312?h=423cfe583f&color=ff5e1a&title=0&byline=0&portrait=0</template>
+        </div>
+        <div class="work-info">
+          <div class="work-cat">Product · 2D Animation</div>
+          <div class="work-title">Sealy — Meet Your New Mattress Hero</div>
+          <div class="work-desc">Illustrated and animated product campaign showcasing three key brand benefits.</div>
+        </div>
+        <div class="work-card-hitbox"></div>
       </div>
+
+      <div class="work-card" data-index="3">
+        <div class="video-wrap">
+          <img class="video-thumb" src="https://i.vimeocdn.com/video/2178760185-2e4ceba9f90faaad8c60ed784590c175015eb496a1dfacb902d6fd02ffdeec30-d_960x540" alt="Arabyads CTV video thumbnail" loading="lazy" width="960" height="540">
+          <div class="video-play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+          <template class="video-embed-src">https://player.vimeo.com/video/1209223433?h=28bf8f1ee4&color=ff5e1a&title=0&byline=0&portrait=0</template>
+        </div>
+        <div class="work-info">
+          <div class="work-cat">CTV · Performance Marketing</div>
+          <div class="work-title">Arabyads — CTV Video</div>
+          <div class="work-desc">Connected TV creative optimized for global performance marketing campaigns.</div>
+        </div>
+        <div class="work-card-hitbox"></div>
+      </div>
+
+      <div class="work-card" data-index="4">
+        <div class="video-wrap">
+          <img class="video-thumb" src="https://i.vimeocdn.com/video/2025610492-9f3c38e2d02c3e46a2ed16000e94e0dfc95a2bc8db3b755dcfca9c3bd8686556-d_960x540" alt="Welab SaaS explainer video thumbnail" loading="lazy" width="960" height="540">
+          <div class="video-play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+          <template class="video-embed-src">https://player.vimeo.com/video/1092513635?h=a38778c532&color=ff5e1a&title=0&byline=0&portrait=0</template>
+        </div>
+        <div class="work-info">
+          <div class="work-cat">SaaS · Explainer Video</div>
+          <div class="work-title">Welab — One Dashboard. Endless Possibilities.</div>
+          <div class="work-desc">Dynamic explainer video combining motion design, smooth transitions, and live interface footage to showcase a SaaS platform.</div>
+        </div>
+        <div class="work-card-hitbox"></div>
+      </div>
+
+      <div class="work-card" data-index="5">
+        <div class="video-wrap">
+          <img class="video-thumb" src="https://i.vimeocdn.com/video/1963738575-d8e64b131bbd49941793bf19c76230419970c519950485868344401bf8f0a483-d_960x540" alt="TireEX tyre delivery app promo video thumbnail" loading="lazy" width="960" height="540">
+          <div class="video-play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg></div>
+          <template class="video-embed-src">https://player.vimeo.com/video/1041048971?h=be1835d3d4&color=ff5e1a&title=0&byline=0&portrait=0</template>
+        </div>
+        <div class="work-info">
+          <div class="work-cat">App Promo · Motion Graphics</div>
+          <div class="work-title">TireEX — Tyre Delivery App</div>
+          <div class="work-desc">App promotion campaign for TireEX, a tire delivery service in Saudi Arabia.</div>
+        </div>
+        <div class="work-card-hitbox"></div>
+      </div>
+
     </div>
-
-    <div class="work-card">
-      <div class="video-wrap">
-        <img class="video-thumb" src="https://i.vimeocdn.com/video/2061334245-d5530daeff3959b113258398b6f93721ab6bfda403e698c3371738f894ea412b-d_960x540" alt="Video thumbnail" loading="lazy" width="960" height="540">
-        <div class="video-play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-        <template class="video-embed-src">https://player.vimeo.com/video/1120537253?h=7432a0fb6c&color=e8ff00&title=0&byline=0&portrait=0</template>
-      </div>
-      <div class="work-info">
-        <div class="work-cat">Brand · Corporate</div>
-        <div class="work-title">Al-Futtaim — Building a Future-Ready World</div>
-        <div class="work-desc">Seamless visual journey through Al-Futtaim's legacy using motion, typography, and abstract visual elements.</div>
-      </div>
-    </div>
-
-    <div class="work-card">
-      <div class="video-wrap">
-        <img class="video-thumb" src="https://i.vimeocdn.com/video/1991930470-4c731ac1dcfcb8b5fd381463f55180e59df82e02a96aa8973f87bf80179318bb-d_960x540" alt="Video thumbnail" loading="lazy" width="960" height="540">
-        <div class="video-play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-        <template class="video-embed-src">https://player.vimeo.com/video/1064584312?h=423cfe583f&color=e8ff00&title=0&byline=0&portrait=0</template>
-      </div>
-      <div class="work-info">
-        <div class="work-cat">Product · 2D Animation</div>
-        <div class="work-title">Sealy — Meet Your New Mattress Hero</div>
-        <div class="work-desc">Illustrated and animated product campaign showcasing three key brand benefits.</div>
-      </div>
-    </div>
-
-    <div class="work-card work-card-lg">
-      <div class="video-wrap">
-        <img class="video-thumb" src="https://i.vimeocdn.com/video/2178760185-2e4ceba9f90faaad8c60ed784590c175015eb496a1dfacb902d6fd02ffdeec30-d_960x540" alt="Video thumbnail" loading="lazy" width="960" height="540">
-        <div class="video-play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-        <template class="video-embed-src">https://player.vimeo.com/video/1209223433?h=28bf8f1ee4&color=e8ff00&title=0&byline=0&portrait=0</template>
-      </div>
-      <div class="work-info">
-        <div class="work-cat">CTV · Performance Marketing</div>
-        <div class="work-title">Arabyads — CTV Video</div>
-        <div class="work-desc">Connected TV creative optimized for global performance marketing campaigns.</div>
-      </div>
-    </div>
-
-    <div class="work-card">
-      <div class="video-wrap">
-        <img class="video-thumb" src="https://i.vimeocdn.com/video/2025610492-9f3c38e2d02c3e46a2ed16000e94e0dfc95a2bc8db3b755dcfca9c3bd8686556-d_960x540" alt="Video thumbnail" loading="lazy" width="960" height="540">
-        <div class="video-play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-        <template class="video-embed-src">https://player.vimeo.com/video/1092513635?h=a38778c532&color=e8ff00&title=0&byline=0&portrait=0</template>
-      </div>
-      <div class="work-info">
-        <div class="work-cat">SaaS · Explainer Video</div>
-        <div class="work-title">Welab — One Dashboard. Endless Possibilities.</div>
-        <div class="work-desc">Dynamic explainer video combining motion design, smooth transitions, and live interface footage to showcase a SaaS platform.</div>
-      </div>
-    </div>
-
-    <div class="work-card">
-      <div class="video-wrap">
-        <img class="video-thumb" src="https://i.vimeocdn.com/video/1963738575-d8e64b131bbd49941793bf19c76230419970c519950485868344401bf8f0a483-d_960x540" alt="Video thumbnail" loading="lazy" width="960" height="540">
-        <div class="video-play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg></div>
-        <template class="video-embed-src">https://player.vimeo.com/video/1041048971?h=be1835d3d4&color=e8ff00&title=0&byline=0&portrait=0</template>
-      </div>
-      <div class="work-info">
-        <div class="work-cat">App Promo · Motion Graphics</div>
-        <div class="work-title">TireEX — Tyre Delivery App</div>
-        <div class="work-desc">App promotion campaign for TireEX, a tire delivery service in Saudi Arabia.</div>
-      </div>
-    </div>
-
   </div>
 
-  <div style="text-align:center; margin-top: 3rem; display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
-    <a href="https://vimeo.com/albaraamahmoud" target="_blank" class="btn btn-outline">View All Work on Vimeo <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-left:4px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+  <div class="work-caption">
+    <div class="work-caption-cat" id="workCaptionCat"></div>
+    <div class="work-caption-title" id="workCaptionTitle"></div>
+  </div>
+
+  <div style="text-align:center; margin-top: 2.5rem; display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+    <a href="https://vimeo.com/albaraamahmoud" target="_blank" class="btn btn-outline">View on Vimeo <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-left:4px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
     <a href="https://www.behance.net/albaraa-mahmoud" target="_blank" class="btn btn-outline">View on Behance <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-left:4px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
   </div>
 </section>
 
-<section id="about">
+<section id="about" data-page-index="3" style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center;">
   <div class="section-label">About</div>
   <div class="about-grid">
     <div>
-      <h2 class="section-title">Motion is how I think.<br>Stories are what I make.</h2>
-      <p class="about-text" style="margin-bottom:1.5rem;"><strong>AlBaraa Mahmoud</strong> is a <strong>Senior Motion Designer & Video Producer</strong> based in Cairo, Egypt — not affiliated with any business consulting or growth strategy services. With 7+ years of experience producing motion graphics, 2D/3D animation, and performance-driven video content for agencies and global brands.</p>
-      <p class="about-text" style="margin-bottom:1.5rem;">Currently at <strong>ArabyAds</strong>, leading creative production for global performance marketing campaigns — 350+ video assets across Meta, TikTok, YouTube, and CTV platforms.</p>
-      <p class="about-text">I work at the intersection of <strong>craft and performance</strong> — using AI tools like Adobe Firefly and Runway alongside After Effects, Cinema 4D, Figma, and Lottie to move faster without sacrificing quality.</p>
+      <div class="about-stats-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg> Track record</div>
+      <h2 class="section-title reveal">Proven by real<br>campaign results.</h2>
+      <p class="about-text" style="margin: 1.25rem 0 1.5rem; color: var(--muted);">Motion graphics and video production that's shipped, tested, and optimized across global performance marketing campaigns — not just concepts.</p>
+      <p style="margin-bottom: 2.5rem;"><a href="case-studies.html" style="color: var(--accent); font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;">View full case studies <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a></p>
+      <p class="about-text" style="font-size: 0.88rem;"><strong>Currently at ArabyAds,</strong> leading creative production across Meta, TikTok, YouTube, and CTV — with AI tools like Firefly and Runway alongside After Effects, Cinema 4D, and Figma.</p>
     </div>
-    <div class="about-skills">
-      <div class="skill-row">
-        <div class="skill-name"><span>After Effects</span><span>98%</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="width:98%"></div></div>
+    <div class="about-skills-grid">
+      <div class="about-skill-card big">
+        <div class="about-stat-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
+        <div class="about-stat-label">Motion</div>
+        <div class="about-stat-num stat-num" data-target="98" data-suffix="%">0%</div>
+        <div class="about-stat-desc">After Effects — 2D/3D motion graphics &amp; animation</div>
       </div>
-      <div class="skill-row">
-        <div class="skill-name"><span>Cinema 4D</span><span>90%</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+      <div class="about-skill-card big">
+        <div class="about-stat-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg></div>
+        <div class="about-stat-label">UI Animation</div>
+        <div class="about-stat-num stat-num" data-target="82" data-suffix="%">0%</div>
+        <div class="about-stat-desc">Figma — micro-interactions &amp; UI motion specs</div>
       </div>
-      <div class="skill-row">
-        <div class="skill-name"><span>Premiere Pro</span><span>95%</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+      <div class="about-skill-card small">
+        <div class="about-stat-label">Cinema 4D</div>
+        <div class="about-stat-num stat-num" data-target="90" data-suffix="%">0%</div>
       </div>
-      <div class="skill-row">
-        <div class="skill-name"><span>Figma</span><span>82%</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div>
+      <div class="about-skill-card small">
+        <div class="about-stat-label">Premiere Pro</div>
+        <div class="about-stat-num stat-num" data-target="95" data-suffix="%">0%</div>
       </div>
-      <div class="skill-row">
-        <div class="skill-name"><span>Lottie / Web Animation</span><span>80%</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+      <div class="about-skill-card small">
+        <div class="about-stat-label">Lottie</div>
+        <div class="about-stat-num stat-num" data-target="80" data-suffix="%">0%</div>
       </div>
-      <div class="skill-row">
-        <div class="skill-name"><span>AI Tools (Firefly, Runway)</span><span>88%</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+      <div class="about-skill-card small">
+        <div class="about-stat-label">AI Tools</div>
+        <div class="about-stat-num stat-num" data-target="88" data-suffix="%">0%</div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="services">
+<section id="services" data-page-index="4" style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center;">
   <div class="section-label">Services</div>
-  <h2 class="section-title" style="margin-bottom:1rem;">What I can make for you.</h2>
+  <h2 class="section-title reveal" style="margin-bottom:1rem;">What I can make for you.</h2>
   <p class="about-text" style="max-width:600px; margin-bottom:0;">Motion design and video production services for agencies, brands, and startups — from concept to final delivery.</p>
   <p style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 1.5rem;">Pick your desired service ↓</p>
   <p style="margin-top: 0.75rem;"><a href="services.html" style="color: var(--muted); font-size: 0.85rem; text-decoration: underline;">View full service details →</a></p>
-  <div class="services-grid">
+  <div class="services-grid reveal-stagger">
     <button type="button" class="service-item" onclick="selectService('Motion Graphics & Animation')">
       <span class="service-num">01</span>
       <div class="service-title">Motion Graphics & Animation</div>
@@ -608,9 +698,9 @@
   </div>
 </section>
 
-<section id="experience">
-  <h2 class="section-label" style="font-weight:400;">Experience</h2>
-  <div class="exp-list">
+<section id="experience" data-page-index="5" style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center;">
+  <h2 class="section-label reveal" style="font-weight:400;">Experience</h2>
+  <div class="exp-list reveal-stagger">
     <div class="exp-item">
       <div class="exp-date">Sep 2025 — Present</div>
       <div>
@@ -651,14 +741,22 @@
         <div class="exp-desc">Developed animations and video productions across web, trailers, product demos, and digital signage. Created Figma prototypes and UI motion specs for developer handoff.</div>
       </div>
     </div>
+    <div class="exp-item">
+      <div class="exp-date">May 2017 — Sep 2019</div>
+      <div>
+        <div class="exp-company">Dimofinf</div>
+        <div class="exp-role">Motion Graphic Designer</div>
+        <div class="exp-desc">Produced motion graphics for campaigns and broadcast scenes over 2 years and 5 months, building the foundation of a career in motion design.</div>
+      </div>
+    </div>
   </div>
 </section>
 
-<section id="contact">
+<section id="contact" data-page-index="6" style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center;">
   <div class="section-label">Contact</div>
   <div class="contact-inner">
     <div>
-      <h2 class="section-title">Let's make something great together.</h2>
+      <h2 class="section-title reveal">Let's make something great together.</h2>
       <p style="color: var(--muted); font-size: 1rem; margin-top: 1rem;">Open to remote full-time roles, freelance projects, and creative collaborations worldwide.</p>
       <div style="margin-top: 2rem; display: flex; flex-direction: column; gap: 0.75rem;">
         <a href="https://linkedin.com/in/albaraamahmoud" target="_blank" class="contact-link"><span>LinkedIn</span>linkedin.com/in/albaraamahmoud<span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;margin-left:4px"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
@@ -695,40 +793,50 @@
   <span class="footer-copy">© 2026 AlBaraa Mahmoud. Cairo, Egypt.</span>
   <span class="footer-copy">Senior Motion Designer & Video Producer</span>
 </footer>
-
 <script>
-window.addEventListener('load', function(){
-  document.body.classList.add('js-loaded');
-});
+(function(){
+  var items = document.querySelectorAll('.reveal, .reveal-stagger');
+  if(!items.length || !('IntersectionObserver' in window)){
+    items.forEach(function(el){ el.classList.add('is-visible'); });
+    return;
+  }
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+  items.forEach(function(el){ observer.observe(el); });
+})();
 </script>
 
 <script>
 (function(){
-  var clientsSection = document.getElementById('clients');
-  if(!clientsSection || !('IntersectionObserver' in window)){
-    // Fallback: load immediately if IntersectionObserver unsupported
-    document.querySelectorAll('.mask-logo[data-logo]').forEach(function(el){
-      var url = el.getAttribute('data-logo');
-      el.style.webkitMaskImage = 'url(' + url + ')';
-      el.style.maskImage = 'url(' + url + ')';
+  document.querySelectorAll('.btn-primary').forEach(function(btn){
+    btn.addEventListener('click', function(e){
+      var rect = btn.getBoundingClientRect();
+      var ripple = document.createElement('span');
+      var size = Math.max(rect.width, rect.height) * 1.6;
+      ripple.className = 'btn-ripple';
+      ripple.style.width = ripple.style.height = size + 'px';
+      ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+      ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+      btn.appendChild(ripple);
+      ripple.addEventListener('animationend', function(){ ripple.remove(); });
     });
-    return;
-  }
-  var loaded = false;
-  var observer = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if(entry.isIntersecting && !loaded){
-        loaded = true;
-        document.querySelectorAll('.mask-logo[data-logo]').forEach(function(el){
-          var url = el.getAttribute('data-logo');
-          el.style.webkitMaskImage = 'url(' + url + ')';
-          el.style.maskImage = 'url(' + url + ')';
-        });
-        observer.disconnect();
-      }
-    });
-  }, { rootMargin: '200px' });
-  observer.observe(clientsSection);
+  });
+})();
+</script>
+
+<script>
+(function(){
+  document.querySelectorAll('.mask-logo[data-logo]').forEach(function(el){
+    var url = el.getAttribute('data-logo');
+    el.style.webkitMaskImage = 'url(' + url + ')';
+    el.style.maskImage = 'url(' + url + ')';
+  });
 })();
 </script>
 
@@ -740,6 +848,7 @@ window.addEventListener('load', function(){
     var src = (tmpl.content ? tmpl.content.textContent : tmpl.textContent).trim();
     var titleEl = wrap.parentElement.querySelector('.work-title');
     var title = titleEl ? titleEl.textContent.trim() : 'Video';
+    var originalHTML = wrap.innerHTML;
     wrap.setAttribute('role', 'button');
     wrap.setAttribute('tabindex', '0');
     wrap.setAttribute('aria-label', 'Play video: ' + title);
@@ -751,12 +860,98 @@ window.addEventListener('load', function(){
       iframe.allowFullscreen = true;
       wrap.innerHTML = '';
       wrap.appendChild(iframe);
+      wrap.classList.add('is-playing');
+    }
+    function stop(){
+      if(!wrap.classList.contains('is-playing')) return;
+      wrap.innerHTML = originalHTML;
+      wrap.classList.remove('is-playing');
     }
     wrap.addEventListener('click', play);
     wrap.addEventListener('keydown', function(e){
       if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); play(); }
     });
+    wrap._stopVideo = stop;
   });
+})();
+</script>
+
+<script>
+(function(){
+  var carousel = document.getElementById('workCarousel');
+  if(!carousel) return;
+  var cards = Array.prototype.slice.call(carousel.querySelectorAll('.work-card'));
+  var n = cards.length;
+  var current = 3; // default centered project (Arabyads CTV)
+
+  var positions = {
+    0: { x: 0,    y: 0,   scale: 1,    rot: 0,   z: 10, op: 1 },
+    1: { x: 185,  y: 0,   scale: 0.82, rot: 5,   z: 6,  op: 1 },
+    '-1': { x: -185, y: 0,   scale: 0.82, rot: -5,  z: 6,  op: 1 },
+    2: { x: 340,  y: 4,   scale: 0.64, rot: 11,  z: 3,  op: 1 },
+    '-2': { x: -340, y: 4,   scale: 0.64, rot: -11, z: 3,  op: 1 },
+    3: { x: 450,  y: 8,   scale: 0.48, rot: 16,  z: 1,  op: 0 }
+  };
+
+  function normalizeOffset(raw){
+    var o = ((raw % n) + n) % n;
+    if(o > n / 2) o -= n;
+    return o;
+  }
+
+  var captionCat = document.getElementById('workCaptionCat');
+  var captionTitle = document.getElementById('workCaptionTitle');
+
+  function render(){
+    cards.forEach(function(card){
+      var idx = parseInt(card.getAttribute('data-index'), 10);
+      var offset = normalizeOffset(idx - current);
+      var pos = positions[offset] || positions[3];
+      card.style.transform = 'translate(' + pos.x + 'px,' + pos.y + 'px) scale(' + pos.scale + ') rotate(' + pos.rot + 'deg)';
+      card.style.zIndex = pos.z;
+      card.style.opacity = pos.op;
+      card.style.pointerEvents = pos.op === 0 ? 'none' : 'auto';
+      var isCenter = offset === 0;
+      if(!isCenter){
+        var wrap = card.querySelector('.video-wrap');
+        if(wrap && typeof wrap._stopVideo === 'function') wrap._stopVideo();
+      }
+      card.classList.toggle('is-center', isCenter);
+      if(isCenter && captionCat && captionTitle){
+        var catEl = card.querySelector('.work-cat');
+        var titleEl = card.querySelector('.work-title');
+        captionCat.textContent = catEl ? catEl.textContent : '';
+        captionTitle.textContent = titleEl ? titleEl.textContent : '';
+      }
+    });
+  }
+
+  function goTo(index){
+    current = ((index % n) + n) % n;
+    render();
+  }
+
+  var hoverTimer = null;
+  cards.forEach(function(card){
+    var idx = parseInt(card.getAttribute('data-index'), 10);
+    var hitbox = card.querySelector('.work-card-hitbox');
+    if(hitbox){
+      hitbox.addEventListener('mouseenter', function(){
+        clearTimeout(hoverTimer);
+        hoverTimer = setTimeout(function(){ goTo(idx); }, 220);
+      });
+      hitbox.addEventListener('mouseleave', function(){
+        clearTimeout(hoverTimer);
+      });
+      hitbox.addEventListener('click', function(){
+        clearTimeout(hoverTimer);
+        goTo(idx);
+      });
+    }
+  });
+
+
+  render();
 })();
 </script>
 
@@ -776,30 +971,6 @@ function selectService(serviceName){
   if(service){
     selectService(service);
   }
-})();
-</script>
-
-<script>
-(function(){
-  var toggle = document.getElementById('navToggle');
-  var links = document.getElementById('navLinks');
-  var overlay = document.getElementById('navOverlay');
-  if(!toggle || !links || !overlay) return;
-  function closeMenu(){
-    toggle.classList.remove('open');
-    links.classList.remove('open');
-    overlay.classList.remove('open');
-    toggle.setAttribute('aria-expanded', 'false');
-  }
-  function toggleMenu(){
-    var isOpen = links.classList.toggle('open');
-    toggle.classList.toggle('open', isOpen);
-    overlay.classList.toggle('open', isOpen);
-    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-  }
-  toggle.addEventListener('click', toggleMenu);
-  overlay.addEventListener('click', closeMenu);
-  links.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
 })();
 </script>
 
@@ -841,5 +1012,565 @@ function selectService(serviceName){
 })();
 </script>
 
+<script>
+(function(){
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main > section[data-page-index]'));
+  sections.sort(function(a, b){ return parseInt(a.dataset.pageIndex, 10) - parseInt(b.dataset.pageIndex, 10); });
+  if(!sections.length) return;
+
+  var isAnimating = true;
+  var initTimer = setTimeout(function(){ isAnimating = false; }, 400);
+  var cooldownTimer = null;
+  var boundLinks = []; // {el, handler} pairs bound below, for teardown
+
+  // Built up-front (moved ahead of detectInitialIndex) so an incoming hash like
+  // "#about" — e.g. from a cross-page link on /blog.html — can be resolved to a
+  // section index immediately, not just for in-page click handling later.
+  var sectionsById = {};
+  sections.forEach(function(s, i){
+    if(s.id) sectionsById['#' + s.id] = i;
+  });
+
+  // currentIndex is the single source of truth. It is ONLY ever changed by goToSection(),
+  // never guessed from scroll position DURING navigation — but we DO need to detect it
+  // correctly once at page load, in case the page loads mid-scroll (e.g. on refresh) OR
+  // arrives with a URL hash from another page (e.g. /blog.html -> /#about).
+  function detectInitialIndex(){
+    var hash = window.location.hash;
+    if(hash && sectionsById.hasOwnProperty(hash)) return sectionsById[hash];
+    var refPoint = 40;
+    var idx = 0;
+    for(var i = 0; i < sections.length; i++){
+      if(sections[i].getBoundingClientRect().top <= refPoint) idx = i;
+    }
+    return idx;
+  }
+  var currentIndex = detectInitialIndex();
+
+  // If we arrived via a URL hash, the browser may ALSO try to smooth-scroll there on
+  // its own (html has scroll-behavior: smooth), racing our own scroll system and
+  // leaving currentIndex out of sync with what's actually on screen — the next wheel
+  // tick would then snap back to the wrong section. Force the position instantly here
+  // so there's only ever one source of truth for scroll position.
+  if(window.location.hash && sectionsById.hasOwnProperty(window.location.hash)){
+    var htmlElInit = document.documentElement;
+    var prevBehaviorInit = htmlElInit.style.scrollBehavior;
+    htmlElInit.style.scrollBehavior = 'auto';
+    window.scrollTo(0, sections[currentIndex].offsetTop);
+    htmlElInit.style.scrollBehavior = prevBehaviorInit;
+  }
+
+  function easeOutQuart(t){
+    return 1 - Math.pow(1 - t, 2.4);
+  }
+
+  function smoothScrollTo(targetY, duration){
+    var startY = window.scrollY;
+    var distance = targetY - startY;
+    var startTime = null;
+    var htmlEl = document.documentElement;
+    var prevBehavior = htmlEl.style.scrollBehavior;
+    htmlEl.style.scrollBehavior = 'auto';
+    function step(timestamp){
+      if(!startTime) startTime = timestamp;
+      var elapsed = timestamp - startTime;
+      var progress = Math.min(elapsed / duration, 1);
+      window.scrollTo(0, startY + distance * easeOutQuart(progress));
+      if(progress < 1){
+        requestAnimationFrame(step);
+      } else {
+        htmlEl.style.scrollBehavior = prevBehavior;
+        clearTimeout(cooldownTimer);
+        cooldownTimer = setTimeout(function(){ isAnimating = false; }, 350);
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
+  function goToSection(index){
+    index = Math.max(0, Math.min(sections.length - 1, index));
+    if(index === currentIndex) return; // already there (e.g. at the top/bottom boundary) —
+                                        // don't lock scrolling for a move that goes nowhere
+    currentIndex = index;
+    isAnimating = true;
+    clearTimeout(cooldownTimer);
+    // Snap the nav highlight straight to the destination and pause its scroll-spy for
+    // the transition, same as a nav-link click already does — otherwise the spy fires
+    // freely while we animate past intermediate sections (including ones with no nav
+    // link, like hero/clients) and the highlighted link flickers off and back on.
+    if(window.__navHighlight){
+      window.__navHighlight.setActive(sections[index].id);
+      window.__navHighlight.suppressSpyFor(900);
+    }
+    smoothScrollTo(sections[index].offsetTop, 750);
+  }
+
+  // Wheel navigation: purely index-based, no scroll-position guessing.
+  function onWheel(e){
+    if(window.innerWidth < 769) return; // let mobile scroll naturally
+    e.preventDefault();
+    if(isAnimating) return;
+    var dir = e.deltaY > 0 ? 1 : -1;
+    goToSection(currentIndex + dir);
+  }
+  window.addEventListener('wheel', onWheel, { passive: false });
+
+  // Keyboard navigation (Space, arrows, Page Up/Down, Home/End) used to fall through
+  // to the browser's native scroll, which moves scrollY WITHOUT updating currentIndex —
+  // the next wheel tick would then jump relative to a stale index, which looked like a
+  // section getting skipped (or scrolled past). Route these through goToSection too, so
+  // currentIndex stays the single source of truth no matter how the user scrolls.
+  function onKeydown(e){
+    if(window.innerWidth < 769) return;
+    var ae = document.activeElement;
+    var tag = ae && ae.tagName ? ae.tagName.toLowerCase() : '';
+    if(tag === 'input' || tag === 'textarea' || tag === 'select' || (ae && ae.isContentEditable)) return;
+    // Space/Enter on a focused link, button, or video wrapper should do its normal
+    // thing (activate it), not hijack the page scroll.
+    var interactiveFocus = ae && ae !== document.body && ae !== document.documentElement;
+    if(e.key === ' ' && interactiveFocus) return;
+
+    if(e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' '){
+      e.preventDefault();
+      if(isAnimating) return;
+      goToSection(currentIndex + 1);
+    } else if(e.key === 'ArrowUp' || e.key === 'PageUp'){
+      e.preventDefault();
+      if(isAnimating) return;
+      goToSection(currentIndex - 1);
+    } else if(e.key === 'Home'){
+      e.preventDefault();
+      if(isAnimating) return;
+      goToSection(0);
+    } else if(e.key === 'End'){
+      e.preventDefault();
+      if(isAnimating) return;
+      goToSection(sections.length - 1);
+    }
+  }
+  window.addEventListener('keydown', onKeydown);
+
+  // Intercept EVERY in-page anchor link (nav, hero CTAs, etc.) so they route through
+  // the exact same system instead of triggering native browser scrolling, which is
+  // what caused currentIndex to desync from reality before.
+  // (sectionsById was already built above, ahead of detectInitialIndex.)
+
+  // Safety net: anything that can move scrollY outside goToSection() (dragging the
+  // native scrollbar thumb being the main one left) would otherwise let currentIndex
+  // drift from what's actually on screen, so the next wheel/key tick jumps relative
+  // to a stale index — which looks like a section getting skipped. Whenever scrolling
+  // settles and we're not mid-animation, quietly resync currentIndex to reality.
+  var scrollSyncTimer = null;
+  function onScroll(){
+    if(window.innerWidth < 769 || isAnimating) return;
+    clearTimeout(scrollSyncTimer);
+    scrollSyncTimer = setTimeout(function(){
+      var refPoint = 40;
+      var idx = 0;
+      for(var i = 0; i < sections.length; i++){
+        if(sections[i].getBoundingClientRect().top <= refPoint) idx = i;
+      }
+      currentIndex = idx;
+    }, 150);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // The nav bar's own links now always write the page explicitly ("index.html#work"),
+  // not just "#work", so the SAME nav bar markup still resolves correctly regardless
+  // of which page's copy of it happens to be the persistent one for this session (see
+  // the router below — it keeps one page's nav bar alive across virtual navigations,
+  // never re-parsing it, so a bare "#work" would resolve against whatever the CURRENT
+  // page happens to be, not necessarily this one). Match both forms: a bare "#hash",
+  // or "index.html#hash" (with or without a leading path) pointing at THIS document.
+  document.querySelectorAll('a[href*="#"]').forEach(function(link){
+    var href = link.getAttribute('href');
+    var hashIdx = href.indexOf('#');
+    var filePart = href.slice(0, hashIdx);
+    var hash = href.slice(hashIdx);
+    if(filePart !== '' && (filePart.split('/').pop() || 'index.html') !== 'index.html') return;
+    if(sectionsById.hasOwnProperty(hash)){
+      var handler = function(e){
+        e.preventDefault();
+        goToSection(sectionsById[hash]);
+      };
+      link.addEventListener('click', handler);
+      boundLinks.push({ el: link, handler: handler });
+    }
+  });
+
+  // The logo has no hash at all (href="index.html"), so it can't go through the
+  // sectionsById lookup above — without this it would just fall through to the
+  // router, which (seeing we're already on index.html) does nothing, leaving the
+  // logo dead while we're mid-page. Since this script only runs at all while
+  // index.html's content is loaded, any logo click during that time means "scroll
+  // to top", unconditionally.
+  var logo = document.querySelector('.nav-logo');
+  var logoHandler = null;
+  if(logo){
+    logoHandler = function(e){
+      e.preventDefault();
+      goToSection(0);
+    };
+    logo.addEventListener('click', logoHandler);
+  }
+
+  // The nav bar (and its links/logo) lives outside #page-content and survives page
+  // swaps done by the router below — if this whole script re-runs on a later visit
+  // to this page without tearing these down first, the listeners would pile up
+  // (multiple goToSection calls per click/scroll/key), and the ones left over from
+  // the *previous* run would still be closing over that run's now-stale `sections`
+  // array, pointing at DOM nodes the router already discarded. The router calls this
+  // before every swap so each visit starts from a clean slate.
+  window.__sectionScrollTeardown = function(){
+    clearTimeout(initTimer);
+    clearTimeout(cooldownTimer);
+    clearTimeout(scrollSyncTimer);
+    window.removeEventListener('wheel', onWheel, { passive: false });
+    window.removeEventListener('keydown', onKeydown);
+    window.removeEventListener('scroll', onScroll, { passive: true });
+    boundLinks.forEach(function(b){ b.el.removeEventListener('click', b.handler); });
+    if(logo && logoHandler) logo.removeEventListener('click', logoHandler);
+    window.__sectionScrollTeardown = null;
+  };
+})();
+</script>
+</div><!-- #page-content -->
+
+<script>
+window.addEventListener('load', function(){
+  document.body.classList.add('js-loaded');
+});
+</script>
+
+<script>
+(function(){
+  var navEl = document.querySelector('.nav-outer nav');
+  var linksUl = document.getElementById('navLinks');
+  var indicator = document.getElementById('navIndicator');
+  if(!navEl || !linksUl || !indicator) return;
+  var links = Array.prototype.slice.call(linksUl.querySelectorAll('a[data-nav-key]'));
+  if(!links.length) return;
+
+  var hasPositionedOnce = false;
+
+  function moveIndicatorTo(link, instant){
+    if(!link){ indicator.style.opacity = '0'; return; }
+    var navRect = navEl.getBoundingClientRect();
+    var linkRect = link.getBoundingClientRect();
+    var forceInstant = instant || !hasPositionedOnce;
+    if(forceInstant){
+      indicator.style.transition = 'none';
+    }
+    indicator.style.left = Math.round(linkRect.left - navRect.left) + 'px';
+    indicator.style.top = Math.round(linkRect.top - navRect.top) + 'px';
+    indicator.style.width = Math.round(linkRect.width) + 'px';
+    indicator.style.height = Math.round(linkRect.height) + 'px';
+    indicator.style.opacity = '1';
+    if(forceInstant){
+      indicator.getBoundingClientRect(); // force reflow so the instant jump is applied
+      indicator.style.transition = '';
+      hasPositionedOnce = true;
+    }
+  }
+
+  function setActive(key){
+    links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('data-nav-key') === key); });
+    var activeLink = links.filter(function(a){ return a.getAttribute('data-nav-key') === key; })[0];
+    moveIndicatorTo(activeLink);
+  }
+
+  var pageKeyMap = { 'services.html': 'services', 'case-studies.html': 'case-studies', 'blog.html': 'blog' };
+  var path = window.location.pathname.split('/').pop() || 'index.html';
+  var currentPageKey = pageKeyMap[path];
+
+  var suppressSpy = false;
+  var suppressTimer = null;
+
+  function suppressSpyFor(ms){
+    suppressSpy = true;
+    clearTimeout(suppressTimer);
+    suppressTimer = setTimeout(function(){ suppressSpy = false; }, ms);
+  }
+
+  function syncStaticPageActive(){
+    if(currentPageKey){ setActive(currentPageKey); }
+  }
+
+  // The scroll-spy watches whichever sections belong to whatever page is CURRENTLY
+  // loaded into #page-content. The router (further down) swaps that content for a
+  // different page's without a real reload, so this whole file-level state — which
+  // page are we even on, which sections should the spy watch — has to be rebuilt
+  // after every swap, not just computed once here at parse time. resync() is that
+  // rebuild; the router calls it after activating each new page's content.
+  var spy = null;
+  function resync(){
+    path = window.location.pathname.split('/').pop() || 'index.html';
+    currentPageKey = pageKeyMap[path];
+    if(spy){ spy.disconnect(); spy = null; }
+    if(currentPageKey){
+      syncStaticPageActive();
+      return;
+    }
+    if(document.getElementById('work')){
+      var sectionKeys = ['work', 'about', 'services', 'experience', 'contact'];
+      var sections = sectionKeys.map(function(id){ return document.getElementById(id); }).filter(Boolean);
+      if(sections.length && 'IntersectionObserver' in window){
+        spy = new IntersectionObserver(function(entries){
+          if(suppressSpy) return;
+          entries.forEach(function(entry){
+            if(entry.isIntersecting){ setActive(entry.target.id); }
+          });
+        }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+        sections.forEach(function(s){ spy.observe(s); });
+      }
+      // The spy's callback only fires once a watched section actually crosses into
+      // its band — landing at the very top (hero/clients, neither of which has a
+      // nav link) would never tell it to clear whatever was highlighted before, on
+      // whichever page we just came from. Resolve the current section synchronously
+      // instead of waiting on a future scroll/intersection event that may not come.
+      var mid = window.innerHeight / 2;
+      var current = null;
+      sections.forEach(function(s){
+        var r = s.getBoundingClientRect();
+        if(r.top <= mid && r.bottom >= mid) current = s.id;
+      });
+      setActive(current);
+    } else {
+      setActive(null);
+    }
+  }
+  resync();
+
+  // Browsers can restore this page from bfcache (e.g. clicking a nav link,
+  // then Back) without re-running this script, which used to leave the
+  // previous page's link highlighted. Force a re-sync whenever that happens.
+  window.addEventListener('pageshow', function(e){
+    if(e.persisted){ resync(); }
+  });
+
+  links.forEach(function(a){
+    a.addEventListener('click', function(e){
+      var key = a.getAttribute('data-nav-key');
+      var href = a.getAttribute('href') || '';
+      var hashIdx = href.indexOf('#');
+      // A hash alone (e.g. "#work") isn't enough to call this a same-page anchor —
+      // links like "index.html#experience" (used from the other pages) also contain
+      // one but point at a DIFFERENT document. Treating those as same-page skipped
+      // preventDefault, so the browser started navigating away immediately and cut
+      // the pill animation off mid-flight instead of letting it play.
+      var samePageAnchor = hashIdx > -1 && (hashIdx === 0 || href.slice(0, hashIdx) === path);
+      if(samePageAnchor){
+        setActive(key);
+        suppressSpyFor(900);
+      } else if(href){
+        // Cross-page link: the browser is about to unload this document anyway, so
+        // there's no point delaying navigation to let the pill animate — that delay
+        // just made clicking feel unresponsive (nothing happens, then an abrupt
+        // jump), which read as a glitch/double-load. Update the highlight and let
+        // the click navigate immediately, same as any normal link.
+        setActive(key);
+      }
+    });
+  });
+
+  window.addEventListener('resize', function(){
+    var current = links.filter(function(a){ return a.classList.contains('active'); })[0];
+    if(current) moveIndicatorTo(current);
+  });
+
+  // The web font (Plus Jakarta Sans) loads async with font-display: swap, so the
+  // indicator can get measured/sized against the fallback font's metrics first,
+  // then the text reflows once the real font swaps in — leaving the pill mis-sized
+  // around the label. Re-measure once the font is actually ready.
+  if(document.fonts && document.fonts.ready){
+    document.fonts.ready.then(function(){
+      var current = links.filter(function(a){ return a.classList.contains('active'); })[0];
+      if(current) moveIndicatorTo(current, true); // instant re-snap, no visible jump
+    });
+  }
+
+  // Bridge for the section-scroll (wheel/keyboard) navigator below: without this,
+  // only nav-link *clicks* paused the scroll-spy, so wheel/arrow-key navigation let
+  // it fire freely while sweeping past sections with no nav link (hero, clients),
+  // clearing every link's highlight and hiding the pill mid-transition, then
+  // snapping it back once the scroll settled — a visible flicker on every scroll.
+  window.__navHighlight = { setActive: setActive, suppressSpyFor: suppressSpyFor, resync: resync };
+})();
+</script>
+
+<script>
+(function(){
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+  var overlay = document.getElementById('navOverlay');
+  if(!toggle || !links || !overlay) return;
+  function closeMenu(){
+    toggle.classList.remove('open');
+    links.classList.remove('open');
+    overlay.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+  function toggleMenu(){
+    var isOpen = links.classList.toggle('open');
+    toggle.classList.toggle('open', isOpen);
+    overlay.classList.toggle('open', isOpen);
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    // Without this, the page behind the slide-out menu was still scrollable —
+    // touch-dragging over the (fixed, full-screen) overlay scrolled the content
+    // underneath it instead of just dismissing the menu.
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  }
+  toggle.addEventListener('click', toggleMenu);
+  overlay.addEventListener('click', closeMenu);
+  links.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+  window.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && links.classList.contains('open')) closeMenu();
+  });
+})();
+</script>
+
+<script>
+(function(){
+  // Makes the nav bar (and the rest of the persistent shell above) independent of
+  // full page reloads: clicking a link to one of this site's own pages fetches it
+  // in the background and swaps only #page-content, so the nav pill never gets torn
+  // down and rebuilt — it just keeps animating, the same way it already does when
+  // moving between sections within a single page. Any browser without working
+  // fetch/DOMParser (or any response missing #page-content) falls back to a normal
+  // full navigation, so this is purely additive — nothing breaks if it can't run.
+  var KNOWN_PAGES = ['index.html', 'services.html', 'case-studies.html', 'blog.html'];
+  var content = document.getElementById('page-content');
+  // Browsers block fetch() against file:// URLs for security (no CORS story for
+  // local files) — opening this site by double-clicking the HTML file instead of
+  // through a real server means every fetch() call below fails silently, and the
+  // whole point of this system (fetching the next page in the background) can't
+  // work at all. Bail out up front so navigation just falls back to plain links —
+  // exactly like before this system existed — instead of every click quietly
+  // failing a fetch first. Once the site is on a real server (http/https), this
+  // check passes and the fetch-based navigation runs as intended.
+  if(!content || !window.fetch || !window.DOMParser || !window.history || !history.pushState || window.location.protocol === 'file:') return;
+
+  // Tracks which page is ACTUALLY loaded into #page-content right now — deliberately
+  // not derived from window.location, because on a popstate (back/forward) the
+  // browser has already updated location to the TARGET page before our handler even
+  // runs, which made a "target === window.location" same-page check always true and
+  // silently no-op every back/forward between two different pages. This is only
+  // ever updated after a swap actually completes.
+  var loadedPage = window.location.pathname.split('/').pop() || 'index.html';
+
+  // Scripts inserted via innerHTML/DOM parsing don't execute — recreating each
+  // script element (same attributes and text) and swapping it in does, the same
+  // trick every "pjax"-style library uses. This is what lets every per-page script
+  // already in #page-content (reveal-on-scroll, the video players, the work
+  // carousel, the section-scroll system, etc.) "just work" again after a swap,
+  // completely unmodified — each one already queries the DOM fresh on every run.
+  function activateScripts(root){
+    Array.prototype.slice.call(root.querySelectorAll('script')).forEach(function(old){
+      var fresh = document.createElement('script');
+      for(var i = 0; i < old.attributes.length; i++){
+        fresh.setAttribute(old.attributes[i].name, old.attributes[i].value);
+      }
+      fresh.textContent = old.textContent;
+      old.replaceWith(fresh);
+    });
+  }
+
+  // Guards against overlapping navigations: clicking two links in quick succession
+  // (before the first fetch resolves) used to let the OLDER request's .then() chain
+  // finish after the newer one and clobber it — landing on the right page but with
+  // the previous page's nav highlight, since that stale callback ran resync() last.
+  // Every call gets its own token; a callback whose token no longer matches the
+  // latest one knows a newer navigation has since taken over and bails out instead
+  // of applying its now-outdated result.
+  var navToken = 0;
+
+  function navigate(href, push){
+    var urlObj;
+    try { urlObj = new URL(href, window.location.href); } catch(err){ return false; }
+    if(urlObj.origin !== window.location.origin) return false;
+    var page = urlObj.pathname.split('/').pop() || 'index.html';
+    if(KNOWN_PAGES.indexOf(page) === -1) return false;
+    if(page === loadedPage) return false; // #page-content already holds this page —
+                                           // its own in-page systems already own this
+
+    var myToken = ++navToken;
+    fetch(urlObj.pathname + urlObj.search, { credentials: 'same-origin' }).then(function(res){
+      if(!res.ok) throw new Error('navigation fetch failed: ' + res.status);
+      return res.text();
+    }).then(function(html){
+      if(myToken !== navToken) return; // superseded by a later navigation
+      var newDoc = new DOMParser().parseFromString(html, 'text/html');
+      var newContent = newDoc.getElementById('page-content');
+      if(!newContent) throw new Error('fetched page has no #page-content');
+
+      // Each page carries its OWN <style> block with rules specific to its own
+      // content (.service-block only exists in services.html's stylesheet,
+      // .post-row only in blog.html's, etc). Swapping #page-content alone left the
+      // OLD page's stylesheet in place, so anything the new content needed that the
+      // old page's CSS didn't define fell back to bare browser defaults —
+      // underlined blue links being the obvious symptom. Swap the <style> tags in
+      // the same step so the new content is never shown without its CSS.
+      var newStyles = newDoc.head.querySelectorAll('style');
+      if(newStyles.length){
+        document.head.querySelectorAll('style').forEach(function(s){ s.remove(); });
+        newStyles.forEach(function(s){
+          var fresh = document.createElement('style');
+          fresh.textContent = s.textContent;
+          document.head.appendChild(fresh);
+        });
+      }
+
+      if(window.__sectionScrollTeardown) window.__sectionScrollTeardown();
+
+      content.replaceWith(newContent);
+      content = newContent;
+      loadedPage = page;
+      document.title = newDoc.title;
+
+      if(push){
+        history.pushState({}, '', urlObj.pathname + urlObj.search + urlObj.hash);
+      }
+      if(!urlObj.hash){
+        window.scrollTo(0, 0);
+      }
+
+      activateScripts(content);
+
+      if(window.__navHighlight) window.__navHighlight.resync();
+
+      // index.html positions itself from window.location.hash via the
+      // section-scroll script just activated above; the simpler pages have no
+      // such system, so fall back to a plain scrollIntoView for their targets.
+      if(urlObj.hash && page !== 'index.html'){
+        var target = document.getElementById(urlObj.hash.slice(1));
+        if(target) target.scrollIntoView();
+      }
+    }).catch(function(){
+      if(myToken !== navToken) return;
+      window.location.href = href; // give up, let the browser do a normal load
+    });
+    return true;
+  }
+
+  document.addEventListener('click', function(e){
+    if(e.defaultPrevented || e.button !== 0) return;
+    if(e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var el = e.target.nodeType === 1 ? e.target : e.target.parentElement;
+    var a = el && el.closest('a[href]');
+    if(!a) return;
+    if(a.target && a.target !== '_self') return;
+    if(a.hasAttribute('download')) return;
+    var href = a.getAttribute('href');
+    if(!href || href.charAt(0) === '#') return; // pure same-page anchors: leave to
+                                                 // the existing in-page systems
+    if(navigate(href, true)) e.preventDefault();
+  });
+
+  window.addEventListener('popstate', function(){
+    navigate(window.location.pathname + window.location.search + window.location.hash, false);
+  });
+})();
+</script>
 </body>
 </html>

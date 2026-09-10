@@ -2,17 +2,20 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<style>html{background:#0c0d10;color-scheme:dark}</style>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Motion Graphics & Video Production Services — AlBaraa Mahmoud</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
-<link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0c0d10">
 <meta name="description" content="Hire AlBaraa Mahmoud for motion graphics, 2D/3D animation, UGC & CTV performance ads, brand films, video editing, and UI/UX motion services. 7+ years, 350+ videos, 150+ campaigns.">
 <meta name="keywords" content="hire motion designer, motion graphics services, video editing services, video production services, UGC ads production, CTV creative production, brand film production, Lottie animation services, remote motion designer">
 <meta name="author" content="AlBaraa Mahmoud">
@@ -22,7 +25,7 @@
 <meta property="og:description" content="Motion graphics, 2D/3D animation, performance ads, brand films, and video editing services. 7+ years, 350+ videos, 150+ campaigns.">
 <meta property="og:image" content="https://albaraa-mahmoud.com/portfolio_og_image.png">
 <meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="638">
+<meta property="og:image:height" content="630">
 <meta property="og:url" content="https://albaraa-mahmoud.com/services.html">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
@@ -63,25 +66,38 @@
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
-    --bg: #080808; --surface: #111111; --border: #1e1e1e;
-    --accent: #e8ff00; --text: #f0f0f0; --muted: #666;
-    --font-display: 'Space Grotesk', sans-serif;
-    --font-mono: 'Space Mono', monospace;
+    --bg: #0c0d10; --surface: #16171b; --border: #26272d;
+    --accent: #ff5e1a; --text: #f2f2f3; --muted: #9a9aa2;
+    --font-display: 'Plus Jakarta Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
   }
-  html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--text); font-family: var(--font-display); line-height: 1.6; overflow-x: hidden; }
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 300; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 4rem; background: rgba(8,8,8,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
-  .nav-logo { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); letter-spacing: 0.08em; text-decoration: none; }
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-  .nav-links a { color: var(--muted); font-size: 0.85rem; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+  /* No global scroll-behavior:smooth — it made the browser's automatic jump to a
+     URL hash from another page (e.g. arriving here) animate smoothly, racing the
+     page's own JS-driven scrolling and causing a visible glitch. */
+  body { background: var(--bg); color: var(--text); font-family: var(--font-display); line-height: 1.6; overflow-x: hidden; padding-top: 5.5rem; }
+  /* Lets the nav pill glide across a full page navigation (e.g. to/from index.html),
+     not just within one page. Supporting browsers morph any element sharing a
+     view-transition-name between the old and new document; unsupporting browsers
+     just ignore this and keep the instant snap — no regression either way. We turn
+     off the browser's DEFAULT whole-page crossfade (root) so only the nav pill
+     itself animates; the rest of the page still swaps instantly. */
+  @view-transition { navigation: auto; }
+  ::view-transition-group(root), ::view-transition-old(root), ::view-transition-new(root) { animation: none; }
+  .nav-outer { position: fixed; top: 1.25rem; left: 0; right: 0; z-index: 300; display: flex; justify-content: center; padding: 0 1.5rem; pointer-events: none; }
+  nav { position: relative; pointer-events: auto; display: inline-flex; align-items: center; justify-content: center; gap: 1rem; width: auto; max-width: 96vw; padding: 0.95rem 1.6rem; background: var(--surface); border-radius: 999px; box-shadow: 0 8px 30px -12px rgba(20,20,25,0.18); border: 1px solid var(--border); }
+  .nav-logo { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent); letter-spacing: 0.08em; text-decoration: none; flex: 0 0 auto; }
+  .nav-links { display: flex; align-items: center; gap: 1.1rem; list-style: none; position: relative; }
+  .nav-indicator { position: absolute; top: 0; left: 0; background: var(--accent); border-radius: 999px; z-index: 1; transition: left 0.45s cubic-bezier(.22,.61,.36,1), width 0.45s cubic-bezier(.22,.61,.36,1), top 0.2s ease, height 0.2s ease, opacity 0.25s ease; opacity: 0; pointer-events: none; max-width: 220px; will-change: left, width; view-transition-name: nav-pill; }
+  .nav-links a { display: inline-flex; align-items: center; justify-content: center; line-height: 1; color: var(--muted); font-size: 0.74rem; text-decoration: none; letter-spacing: 0.02em; text-transform: uppercase; transition: color 0.2s; white-space: nowrap; position: relative; z-index: 2; padding: 0.7rem 1rem; box-sizing: border-box; }
   .nav-links a:hover { color: var(--text); }
+  .nav-links a.active { color: #fff; }
   .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; z-index: 200; }
   .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--text); margin: 5px 0; transition: transform 0.25s ease, opacity 0.25s ease; }
   .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .nav-toggle.open span:nth-child(2) { opacity: 0; }
   .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-  .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 2rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; border: 1px solid transparent; transition: all 0.2s; cursor: pointer; font-family: var(--font-display); }
-  .btn-primary { background: var(--accent); color: #000; border-color: var(--accent); }
+  .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 2rem; font-size: 0.85rem; font-weight: 600; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; border: 1px solid transparent; border-radius: 999px; transition: all 0.2s; cursor: pointer; font-family: var(--font-display); }
+  .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
   .btn-primary:hover { background: transparent; color: var(--accent); }
   .btn-outline { background: transparent; color: var(--text); border-color: var(--border); }
   .btn-outline:hover { border-color: var(--text); }
@@ -92,7 +108,7 @@
   .page-hero p { color: var(--muted); font-size: 1.05rem; max-width: 620px; margin-top: 1rem; }
   .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
   .service-block { background: var(--bg); padding: 2.5rem; display: block; text-decoration: none; color: inherit; cursor: pointer; transition: background 0.2s ease; }
-  .service-block:hover { background: rgba(232,255,0,0.04); }
+  .service-block:hover { background: rgba(255,94,26,0.06); }
   .service-block:hover h3 { color: var(--accent); }
   .service-num { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); display: block; margin-bottom: 1rem; }
   .service-block h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.75rem; transition: color 0.2s ease; }
@@ -105,7 +121,8 @@
   a.footer-link { color: var(--muted); font-family: var(--font-mono); font-size: 0.72rem; text-decoration: none; }
   a.footer-link:hover { color: var(--accent); }
   @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
+    .nav-outer { top: 0.75rem; padding: 0 1rem; }
+    nav { padding: 0.5rem 0.5rem 0.5rem 1.1rem; }
     .nav-toggle { display: block; }
     .nav-links {
       display: flex; flex-direction: column; position: fixed; top: 0; right: 0;
@@ -125,22 +142,27 @@
 </head>
 <body>
 
+<div class="nav-outer">
 <nav>
-  <a href="/" class="nav-logo">AM ✦</a>
+  <a href="index.html" class="nav-logo">AM ✦</a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="/#work">Work</a></li>
-    <li><a href="/#about">About</a></li>
-    <li><a href="/services.html">Services</a></li>
-    <li><a href="/case-studies.html">Case Studies</a></li>
-    <li><a href="/blog.html">Blog</a></li>
-    <li><a href="/#experience">Experience</a></li>
-    <li><a href="/#contact">Contact</a></li>
+    <li><a href="index.html#work" data-nav-key="work">Work</a></li>
+    <li><a href="index.html#about" data-nav-key="about">About</a></li>
+    <li><a href="services.html" data-nav-key="services">Services</a></li>
+    <li><a href="case-studies.html" data-nav-key="case-studies">Case Studies</a></li>
+    <li><a href="blog.html" data-nav-key="blog">Blog</a></li>
+    <li><a href="index.html#experience" data-nav-key="experience">Experience</a></li>
+    <li><a href="index.html#contact" data-nav-key="contact">Contact</a></li>
   </ul>
+  <span class="nav-indicator" id="navIndicator"></span>
   <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
+</div>
 <div class="nav-overlay" id="navOverlay"></div>
+
+<div id="page-content">
 
 <div class="page-hero">
   <div class="section-label">Services</div>
@@ -150,37 +172,37 @@
 
 <section>
   <div class="services-grid">
-    <a class="service-block" href="/?service=Motion%20Graphics%20%26%20Animation#contact">
+    <a class="service-block" href="index.html?service=Motion%20Graphics%20%26%20Animation#contact">
       <span class="service-num">01</span>
       <h3>Motion Graphics & Animation</h3>
       <p>2D and 3D animation, explainer videos, and logo reveals built from concept through final render. Work spans product explainers, kinetic typography, and branded animated content for web and broadcast.</p>
       <div class="tools">After Effects · Cinema 4D</div>
     </a>
-    <a class="service-block" href="/?service=Performance%20%26%20Social%20Ads#contact">
+    <a class="service-block" href="index.html?service=Performance%20%26%20Social%20Ads#contact">
       <span class="service-num">02</span>
       <h3>Performance & Social Ads</h3>
       <p>UGC-style ads, CTV creatives, and campaign videos designed for Meta, TikTok, and YouTube — built with A/B testing and platform-specific pacing in mind, not just resized for each placement.</p>
       <div class="tools">After Effects · Premiere Pro · AI Production Tools</div>
     </a>
-    <a class="service-block" href="/?service=Brand%20Films%20%26%20Corporate%20Videos#contact">
+    <a class="service-block" href="index.html?service=Brand%20Films%20%26%20Corporate%20Videos#contact">
       <span class="service-num">03</span>
       <h3>Brand Films & Corporate Videos</h3>
       <p>Polished brand storytelling and corporate video production for regional and global brands, from concept and storyboarding through color grading and sound design.</p>
       <div class="tools">Premiere Pro · DaVinci Resolve · Cinema 4D</div>
     </a>
-    <a class="service-block" href="/?service=Video%20Editing%20%26%20Post-Production#contact">
+    <a class="service-block" href="index.html?service=Video%20Editing%20%26%20Post-Production#contact">
       <span class="service-num">04</span>
       <h3>Video Editing & Post-Production</h3>
       <p>Raw footage to finished cut — editing, color grading, and sound design for social, broadcast, and digital signage deliverables.</p>
       <div class="tools">Premiere Pro · DaVinci Resolve</div>
     </a>
-    <a class="service-block" href="/?service=UI%2FUX%20Motion%20%26%20Lottie%20Animation#contact">
+    <a class="service-block" href="index.html?service=UI%2FUX%20Motion%20%26%20Lottie%20Animation#contact">
       <span class="service-num">05</span>
       <h3>UI/UX Motion & Lottie Animation</h3>
       <p>Micro-interactions and web/app animation specs, from Figma prototype through motion specification to exported, developer-ready Lottie files.</p>
       <div class="tools">Figma · After Effects · Lottie</div>
     </a>
-    <a class="service-block" href="/?service=App%20Promo%20%26%20Product%20Launch%20Videos#contact">
+    <a class="service-block" href="index.html?service=App%20Promo%20%26%20Product%20Launch%20Videos#contact">
       <span class="service-num">06</span>
       <h3>App Promo & Product Launch Videos</h3>
       <p>Launch videos and app promo campaigns built to introduce a product clearly and turn a feature list into a story that converts.</p>
@@ -193,13 +215,14 @@
   <div class="section-label" style="justify-content:center; display:flex;">Get Started</div>
   <h2 class="section-title">Have a project in mind?</h2>
   <p>Open to remote full-time roles, freelance projects, and creative collaborations worldwide. Tell me about your project and I'll get back to you.</p>
-  <a href="/#contact" class="btn btn-primary">Get in Touch</a>
+  <a href="index.html#contact" class="btn btn-primary">Get in Touch</a>
 </section>
 
 <footer>
   <span class="footer-copy">© 2026 AlBaraa Mahmoud. Cairo, Egypt.</span>
-  <a href="/" class="footer-link">Back to Portfolio</a>
+  <a href="index.html" class="footer-link">Back to Portfolio</a>
 </footer>
+</div><!-- #page-content -->
 
 <script>
 (function(){
@@ -212,16 +235,323 @@
     links.classList.remove('open');
     overlay.classList.remove('open');
     toggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
   }
   function toggleMenu(){
     var isOpen = links.classList.toggle('open');
     toggle.classList.toggle('open', isOpen);
     overlay.classList.toggle('open', isOpen);
     toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    // Without this, the page behind the slide-out menu was still scrollable —
+    // touch-dragging over the (fixed, full-screen) overlay scrolled the content
+    // underneath it instead of just dismissing the menu.
+    document.body.style.overflow = isOpen ? 'hidden' : '';
   }
   toggle.addEventListener('click', toggleMenu);
   overlay.addEventListener('click', closeMenu);
   links.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+  window.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && links.classList.contains('open')) closeMenu();
+  });
+})();
+</script>
+
+<script>
+(function(){
+  var navEl = document.querySelector('.nav-outer nav');
+  var linksUl = document.getElementById('navLinks');
+  var indicator = document.getElementById('navIndicator');
+  if(!navEl || !linksUl || !indicator) return;
+  var links = Array.prototype.slice.call(linksUl.querySelectorAll('a[data-nav-key]'));
+  if(!links.length) return;
+
+  var hasPositionedOnce = false;
+
+  function moveIndicatorTo(link, instant){
+    if(!link){ indicator.style.opacity = '0'; return; }
+    var navRect = navEl.getBoundingClientRect();
+    var linkRect = link.getBoundingClientRect();
+    var forceInstant = instant || !hasPositionedOnce;
+    if(forceInstant){
+      indicator.style.transition = 'none';
+    }
+    indicator.style.left = Math.round(linkRect.left - navRect.left) + 'px';
+    indicator.style.top = Math.round(linkRect.top - navRect.top) + 'px';
+    indicator.style.width = Math.round(linkRect.width) + 'px';
+    indicator.style.height = Math.round(linkRect.height) + 'px';
+    indicator.style.opacity = '1';
+    if(forceInstant){
+      indicator.getBoundingClientRect(); // force reflow so the instant jump is applied
+      indicator.style.transition = '';
+      hasPositionedOnce = true;
+    }
+  }
+
+  function setActive(key){
+    links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('data-nav-key') === key); });
+    var activeLink = links.filter(function(a){ return a.getAttribute('data-nav-key') === key; })[0];
+    moveIndicatorTo(activeLink);
+  }
+
+  var pageKeyMap = { 'services.html': 'services', 'case-studies.html': 'case-studies', 'blog.html': 'blog' };
+  var path = window.location.pathname.split('/').pop() || 'index.html';
+  var currentPageKey = pageKeyMap[path];
+
+  var suppressSpy = false;
+  var suppressTimer = null;
+
+  function suppressSpyFor(ms){
+    suppressSpy = true;
+    clearTimeout(suppressTimer);
+    suppressTimer = setTimeout(function(){ suppressSpy = false; }, ms);
+  }
+
+  function syncStaticPageActive(){
+    if(currentPageKey){ setActive(currentPageKey); }
+  }
+
+  // The scroll-spy watches whichever sections belong to whatever page is CURRENTLY
+  // loaded into #page-content. The router (further down) swaps that content for a
+  // different page's without a real reload, so this whole file-level state — which
+  // page are we even on, which sections should the spy watch — has to be rebuilt
+  // after every swap, not just computed once here at parse time. resync() is that
+  // rebuild; the router calls it after activating each new page's content.
+  var spy = null;
+  function resync(){
+    path = window.location.pathname.split('/').pop() || 'index.html';
+    currentPageKey = pageKeyMap[path];
+    if(spy){ spy.disconnect(); spy = null; }
+    if(currentPageKey){
+      syncStaticPageActive();
+      return;
+    }
+    if(document.getElementById('work')){
+      var sectionKeys = ['work', 'about', 'services', 'experience', 'contact'];
+      var sections = sectionKeys.map(function(id){ return document.getElementById(id); }).filter(Boolean);
+      if(sections.length && 'IntersectionObserver' in window){
+        spy = new IntersectionObserver(function(entries){
+          if(suppressSpy) return;
+          entries.forEach(function(entry){
+            if(entry.isIntersecting){ setActive(entry.target.id); }
+          });
+        }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+        sections.forEach(function(s){ spy.observe(s); });
+      }
+      // The spy's callback only fires once a watched section actually crosses into
+      // its band — landing at the very top (hero/clients, neither of which has a
+      // nav link) would never tell it to clear whatever was highlighted before, on
+      // whichever page we just came from. Resolve the current section synchronously
+      // instead of waiting on a future scroll/intersection event that may not come.
+      var mid = window.innerHeight / 2;
+      var current = null;
+      sections.forEach(function(s){
+        var r = s.getBoundingClientRect();
+        if(r.top <= mid && r.bottom >= mid) current = s.id;
+      });
+      setActive(current);
+    } else {
+      setActive(null);
+    }
+  }
+  resync();
+
+  // Browsers can restore this page from bfcache (e.g. clicking a nav link,
+  // then Back) without re-running this script, which used to leave the
+  // previous page's link highlighted. Force a re-sync whenever that happens.
+  window.addEventListener('pageshow', function(e){
+    if(e.persisted){ resync(); }
+  });
+
+  links.forEach(function(a){
+    a.addEventListener('click', function(e){
+      var key = a.getAttribute('data-nav-key');
+      var href = a.getAttribute('href') || '';
+      var hashIdx = href.indexOf('#');
+      // A hash alone (e.g. "#work") isn't enough to call this a same-page anchor —
+      // links like "index.html#experience" (used from the other pages) also contain
+      // one but point at a DIFFERENT document. Treating those as same-page skipped
+      // preventDefault, so the browser started navigating away immediately and cut
+      // the pill animation off mid-flight instead of letting it play.
+      var samePageAnchor = hashIdx > -1 && (hashIdx === 0 || href.slice(0, hashIdx) === path);
+      if(samePageAnchor){
+        setActive(key);
+        suppressSpyFor(900);
+      } else if(href){
+        // Cross-page link: the browser is about to unload this document anyway, so
+        // there's no point delaying navigation to let the pill animate — that delay
+        // just made clicking feel unresponsive (nothing happens, then an abrupt
+        // jump), which read as a glitch/double-load. Update the highlight and let
+        // the click navigate immediately, same as any normal link.
+        setActive(key);
+      }
+    });
+  });
+
+  window.addEventListener('resize', function(){
+    var current = links.filter(function(a){ return a.classList.contains('active'); })[0];
+    if(current) moveIndicatorTo(current);
+  });
+
+  // The web font (Plus Jakarta Sans) loads async with font-display: swap, so the
+  // indicator can get measured/sized against the fallback font's metrics first,
+  // then the text reflows once the real font swaps in — leaving the pill mis-sized
+  // around the label. Re-measure once the font is actually ready.
+  if(document.fonts && document.fonts.ready){
+    document.fonts.ready.then(function(){
+      var current = links.filter(function(a){ return a.classList.contains('active'); })[0];
+      if(current) moveIndicatorTo(current, true); // instant re-snap, no visible jump
+    });
+  }
+
+  // Bridge for the section-scroll (wheel/keyboard) navigator below: without this,
+  // only nav-link *clicks* paused the scroll-spy, so wheel/arrow-key navigation let
+  // it fire freely while sweeping past sections with no nav link (hero, clients),
+  // clearing every link's highlight and hiding the pill mid-transition, then
+  // snapping it back once the scroll settled — a visible flicker on every scroll.
+  window.__navHighlight = { setActive: setActive, suppressSpyFor: suppressSpyFor, resync: resync };
+})();
+</script>
+
+<script>
+(function(){
+  // Makes the nav bar (and the rest of the persistent shell above) independent of
+  // full page reloads: clicking a link to one of this site's own pages fetches it
+  // in the background and swaps only #page-content, so the nav pill never gets torn
+  // down and rebuilt — it just keeps animating, the same way it already does when
+  // moving between sections within a single page. Any browser without working
+  // fetch/DOMParser (or any response missing #page-content) falls back to a normal
+  // full navigation, so this is purely additive — nothing breaks if it can't run.
+  var KNOWN_PAGES = ['index.html', 'services.html', 'case-studies.html', 'blog.html'];
+  var content = document.getElementById('page-content');
+  // Browsers block fetch() against file:// URLs for security (no CORS story for
+  // local files) — opening this site by double-clicking the HTML file instead of
+  // through a real server means every fetch() call below fails silently, and the
+  // whole point of this system (fetching the next page in the background) can't
+  // work at all. Bail out up front so navigation just falls back to plain links —
+  // exactly like before this system existed — instead of every click quietly
+  // failing a fetch first. Once the site is on a real server (http/https), this
+  // check passes and the fetch-based navigation runs as intended.
+  if(!content || !window.fetch || !window.DOMParser || !window.history || !history.pushState || window.location.protocol === 'file:') return;
+
+  // Tracks which page is ACTUALLY loaded into #page-content right now — deliberately
+  // not derived from window.location, because on a popstate (back/forward) the
+  // browser has already updated location to the TARGET page before our handler even
+  // runs, which made a "target === window.location" same-page check always true and
+  // silently no-op every back/forward between two different pages. This is only
+  // ever updated after a swap actually completes.
+  var loadedPage = window.location.pathname.split('/').pop() || 'index.html';
+
+  // Scripts inserted via innerHTML/DOM parsing don't execute — recreating each
+  // script element (same attributes and text) and swapping it in does, the same
+  // trick every "pjax"-style library uses. This is what lets every per-page script
+  // already in #page-content (reveal-on-scroll, the video players, the work
+  // carousel, the section-scroll system, etc.) "just work" again after a swap,
+  // completely unmodified — each one already queries the DOM fresh on every run.
+  function activateScripts(root){
+    Array.prototype.slice.call(root.querySelectorAll('script')).forEach(function(old){
+      var fresh = document.createElement('script');
+      for(var i = 0; i < old.attributes.length; i++){
+        fresh.setAttribute(old.attributes[i].name, old.attributes[i].value);
+      }
+      fresh.textContent = old.textContent;
+      old.replaceWith(fresh);
+    });
+  }
+
+  // Guards against overlapping navigations: clicking two links in quick succession
+  // (before the first fetch resolves) used to let the OLDER request's .then() chain
+  // finish after the newer one and clobber it — landing on the right page but with
+  // the previous page's nav highlight, since that stale callback ran resync() last.
+  // Every call gets its own token; a callback whose token no longer matches the
+  // latest one knows a newer navigation has since taken over and bails out instead
+  // of applying its now-outdated result.
+  var navToken = 0;
+
+  function navigate(href, push){
+    var urlObj;
+    try { urlObj = new URL(href, window.location.href); } catch(err){ return false; }
+    if(urlObj.origin !== window.location.origin) return false;
+    var page = urlObj.pathname.split('/').pop() || 'index.html';
+    if(KNOWN_PAGES.indexOf(page) === -1) return false;
+    if(page === loadedPage) return false; // #page-content already holds this page —
+                                           // its own in-page systems already own this
+
+    var myToken = ++navToken;
+    fetch(urlObj.pathname + urlObj.search, { credentials: 'same-origin' }).then(function(res){
+      if(!res.ok) throw new Error('navigation fetch failed: ' + res.status);
+      return res.text();
+    }).then(function(html){
+      if(myToken !== navToken) return; // superseded by a later navigation
+      var newDoc = new DOMParser().parseFromString(html, 'text/html');
+      var newContent = newDoc.getElementById('page-content');
+      if(!newContent) throw new Error('fetched page has no #page-content');
+
+      // Each page carries its OWN <style> block with rules specific to its own
+      // content (.service-block only exists in services.html's stylesheet,
+      // .post-row only in blog.html's, etc). Swapping #page-content alone left the
+      // OLD page's stylesheet in place, so anything the new content needed that the
+      // old page's CSS didn't define fell back to bare browser defaults —
+      // underlined blue links being the obvious symptom. Swap the <style> tags in
+      // the same step so the new content is never shown without its CSS.
+      var newStyles = newDoc.head.querySelectorAll('style');
+      if(newStyles.length){
+        document.head.querySelectorAll('style').forEach(function(s){ s.remove(); });
+        newStyles.forEach(function(s){
+          var fresh = document.createElement('style');
+          fresh.textContent = s.textContent;
+          document.head.appendChild(fresh);
+        });
+      }
+
+      if(window.__sectionScrollTeardown) window.__sectionScrollTeardown();
+
+      content.replaceWith(newContent);
+      content = newContent;
+      loadedPage = page;
+      document.title = newDoc.title;
+
+      if(push){
+        history.pushState({}, '', urlObj.pathname + urlObj.search + urlObj.hash);
+      }
+      if(!urlObj.hash){
+        window.scrollTo(0, 0);
+      }
+
+      activateScripts(content);
+
+      if(window.__navHighlight) window.__navHighlight.resync();
+
+      // index.html positions itself from window.location.hash via the
+      // section-scroll script just activated above; the simpler pages have no
+      // such system, so fall back to a plain scrollIntoView for their targets.
+      if(urlObj.hash && page !== 'index.html'){
+        var target = document.getElementById(urlObj.hash.slice(1));
+        if(target) target.scrollIntoView();
+      }
+    }).catch(function(){
+      if(myToken !== navToken) return;
+      window.location.href = href; // give up, let the browser do a normal load
+    });
+    return true;
+  }
+
+  document.addEventListener('click', function(e){
+    if(e.defaultPrevented || e.button !== 0) return;
+    if(e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var el = e.target.nodeType === 1 ? e.target : e.target.parentElement;
+    var a = el && el.closest('a[href]');
+    if(!a) return;
+    if(a.target && a.target !== '_self') return;
+    if(a.hasAttribute('download')) return;
+    var href = a.getAttribute('href');
+    if(!href || href.charAt(0) === '#') return; // pure same-page anchors: leave to
+                                                 // the existing in-page systems
+    if(navigate(href, true)) e.preventDefault();
+  });
+
+  window.addEventListener('popstate', function(){
+    navigate(window.location.pathname + window.location.search + window.location.hash, false);
+  });
 })();
 </script>
 </body>
