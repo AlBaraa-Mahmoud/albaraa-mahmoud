@@ -219,7 +219,17 @@
   .hero-note-bubble { background: var(--text); color: var(--bg); font-family: var(--font-mono); font-size: 0.7rem; padding: 0.5rem 0.85rem; border-radius: 12px 12px 2px 12px; white-space: nowrap; transform: rotate(-3deg); box-shadow: 0 8px 20px -6px rgba(20,20,25,0.35); order: 2; }
   .hero-note-arrow { width: 32px; height: 32px; color: var(--text); opacity: 0.85; order: 1; margin-bottom: -0.5rem; }
   @media (prefers-reduced-motion: reduce) { .hero-note { animation: none; } }
-  .marquee-wrap { width: 100%; overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1rem 0; background: var(--surface); margin-top: 2.5rem; }
+  /* Deliberately full-bleed: this ticker should span the whole browser width even
+     though it sits inside .hero-content, which is capped at 760px so the rest of
+     the hero text doesn't overflow. margin: calc(50% - 50vw) is the standard "break
+     out of a centered container" trick — the 50% resolves against THIS element's
+     own (narrow) containing block, so it automatically cancels out however much
+     that container is inset from the true viewport edge, landing the margin at
+     exactly the right pull-back no matter how deeply nested this is. (An earlier
+     version of this used left:50% instead, which resolves the same way and so
+     UNDER-shot the pull-back — it only reached 50% of the narrow container, not
+     50vw of the actual viewport.) */
+  .marquee-wrap { width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1rem 0; background: var(--surface); margin-top: 2.5rem; }
   .marquee-track { display: flex; gap: 3rem; width: max-content; animation: scroll 30s linear infinite; }
   .marquee-item { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; white-space: nowrap; display: flex; align-items: center; gap: 1rem; }
   .marquee-item::after { content: '✦'; color: var(--accent); font-size: 0.6rem; }
@@ -333,6 +343,12 @@
   .about-skill-card.small { grid-column: span 1; display: flex; flex-direction: column; justify-content: center; }
   .about-skill-card.small .about-stat-num { margin: 0.4rem 0 0; font-size: 1.9rem; }
   .about-skill-card.small .about-stat-label { font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .about-skill-card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .about-skill-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px -14px rgba(20,20,25,0.18); }
+  .about-stat-icon { width: 38px; height: 38px; border-radius: 10px; background: rgba(52,82,255,0.1); display: flex; align-items: center; justify-content: center; color: var(--accent); margin-bottom: 2.25rem; }
+  .about-stat-label { font-size: 0.92rem; color: var(--text); font-weight: 500; }
+  .about-stat-num { font-size: 2.75rem; font-weight: 700; margin: 1.25rem 0 0.5rem; line-height: 1; font-family: var(--font-mono); }
+  .about-stat-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.4; }
   @media (max-width: 640px) {
     /* Was forcing every card (big AND small) to full width — one per row for all
        6 cards made this section a very long scroll on mobile. Keeping the same
@@ -341,7 +357,10 @@
     .about-skills-grid { gap: 0.6rem; }
     .about-skill-card { padding: 1rem; border-radius: 14px; }
     .about-skill-card.big { grid-column: span 2; }
-    .about-skill-card.small { grid-column: span 1; }
+    /* The small cards have no icon to anchor the eye on the left like the big ones
+       do, so left-aligned text in a card this narrow just looked stranded/uneven —
+       centering it reads as deliberately formatted instead. */
+    .about-skill-card.small { grid-column: span 1; text-align: center; }
     .about-stat-icon { width: 28px; height: 28px; border-radius: 8px; margin-bottom: 1rem; }
     .about-stat-icon svg { width: 14px; height: 14px; }
     .about-stat-label { font-size: 0.72rem; }
@@ -350,12 +369,6 @@
     .about-skill-card.small .about-stat-num { font-size: 1.15rem; margin-top: 0.3rem; }
     .about-skill-card.small .about-stat-label { font-size: 0.6rem; }
   }
-  .about-skill-card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-  .about-skill-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px -14px rgba(20,20,25,0.18); }
-  .about-stat-icon { width: 38px; height: 38px; border-radius: 10px; background: rgba(52,82,255,0.1); display: flex; align-items: center; justify-content: center; color: var(--accent); margin-bottom: 2.25rem; }
-  .about-stat-label { font-size: 0.92rem; color: var(--text); font-weight: 500; }
-  .about-stat-num { font-size: 2.75rem; font-weight: 700; margin: 1.25rem 0 0.5rem; line-height: 1; font-family: var(--font-mono); }
-  .about-stat-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.4; }
   .exp-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 3rem; }
   .exp-list > * { min-width: 0; }
   .exp-item { display: block; padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
@@ -431,11 +444,6 @@
     .client-icon svg { width: 32px; height: 32px; }
     .client-word { font-size: 0.75rem; }
     .services-grid { grid-template-columns: 1fr; }
-    /* This was targeting .exp-item, which is display:block — grid-template-columns
-       does nothing there. .exp-list is the actual grid; without this it stayed
-       locked at 2 columns on mobile, squeezing every entry's date/role/description
-       into ~140px instead of stacking full-width. */
-    .exp-list { grid-template-columns: 1fr; gap: 0.5rem; }
     footer { padding: 1.5rem; flex-direction: column; gap: 1rem; text-align: center; }
     .contact-link { font-size: 0.78rem; padding: 1rem; }
     input, textarea, select { width: 100%; box-sizing: border-box; }
